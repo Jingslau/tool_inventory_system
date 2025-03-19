@@ -1,0 +1,264 @@
+﻿<UserControl
+    x:Class="waerp_toolpilot.application.Administration.TempLocationAdministration.TempLocatioOverviewView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.application.Administration.TempLocationAdministration"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="1000"
+    d:DesignWidth="1086.625"
+    Background="#EEEEEE"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    Foreground="black"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="QuantityCell" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,0,0,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="SingleColDataGrid" TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+        </Style>
+        <Style x:Key="GridCellPad" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="15,0,0,0" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="LeftGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </UserControl.Resources>
+    <Grid Style="{StaticResource GridBackgroundMainFrame}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
+        <Grid
+            Grid.Row="0"
+            Margin="50,0,50,0"
+            VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                FontSize="16"
+                FontWeight="Light"
+                TextAlignment="Left"
+                TextWrapping="Wrap">
+                Hier können Sie Lagerorte bearbeiten oder anlegen.<LineBreak /><LineBreak />
+                Sollten Sie einen Lagerorte bearbeiten müssen, dann klicken Sie auf den Stift in der Tabelle beim zu bearbeitenden Lagerorte.</TextBlock>
+            <Button
+                x:Name="CreateTempLocation"
+                Grid.Column="1"
+                Width="200"
+                HorizontalAlignment="Right"
+                Background="#42A95F"
+                BorderBrush="#42A95F"
+                Click="CreateTempLocation_Click"
+                Content="Zwischenlager anlegen"
+                Foreground="White"
+                Style="{StaticResource NormalButton}"
+                ToolTip="Lagerort anlegen" />
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="7*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBox
+                x:Name="searchBox"
+                Grid.Row="0"
+                Margin="50,20,20,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Suche"
+                AcceptsReturn="True"
+                Cursor="Hand"
+                IsEnabled="True"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                TextChanged="searchBox_TextChanged"
+                TextWrapping="NoWrap" />
+            <DataGrid
+                x:Name="DataLocationItems"
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="50,0,20,20"
+                ItemsSource="{Binding Path=itemData}"
+                SelectionChanged="DataLocationItems_SelectionChanged">
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="MinHeight" Value="100" />
+                        <Setter Property="MaxHeight" Value="100" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#00F4E6" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+
+                        </Style.Triggers>
+
+                    </Style>
+
+                </DataGrid.CellStyle>
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=floor_name}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="Zwischenlager"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+
+                    <DataGridTextColumn
+                        Width="2*"
+                        Binding="{Binding Path=floor_quantity}"
+                        ElementStyle="{StaticResource QuantityCell}"
+                        Header="Gelagerte Menge"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+
+
+
+                    <DataGridTemplateColumn
+                        Width="*"
+                        Header="Bearbeiten"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    x:Name="EditTempLocation"
+                                    Width="40"
+                                    Height="40"
+                                    Background="#4265A9"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0"
+                                    Click="EditTempLocation_Click"
+                                    Foreground="White"
+                                    Style="{StaticResource MaterialDesignFloatingActionLightButton}">
+                                    <materialDesign:PackIcon Kind="PencilOutline" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="*"
+                        Header="Löschen"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    x:Name="DeleteTempLocation"
+                                    Width="40"
+                                    Height="40"
+                                    Background="#A94C42"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0"
+                                    Click="DeleteTempLocation_Click"
+                                    Foreground="White"
+                                    Style="{StaticResource MaterialDesignFloatingActionLightButton}">
+                                    <materialDesign:PackIcon Kind="DeleteOutline" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid
+                x:Name="GroupItemData"
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                Margin="20,20,50,20">
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="MinHeight" Value="100" />
+                        <Setter Property="MaxHeight" Value="100" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#9E9E9E" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=item_ident}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="Artikelnummer"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="2*"
+                        Binding="{Binding Path=item_description}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="Beschreibung"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=item_quantity_total}"
+                        ElementStyle="{StaticResource QuantityCell}"
+                        Header="Bestand"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+
+                    <DataGridTemplateColumn
+                        Width="2*"
+                        Header="Bild"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image
+                                    Width="100"
+                                    RenderOptions.BitmapScalingMode="HighQuality"
+                                    Source="{Binding Path=item_image_path}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+    </Grid>
+</UserControl>

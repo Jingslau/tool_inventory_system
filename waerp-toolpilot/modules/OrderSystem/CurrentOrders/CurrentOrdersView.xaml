@@ -1,0 +1,385 @@
+﻿<UserControl
+    x:Class="waerp_toolpilot.application.OrderSystem.CurrentOrders.CurrentOrdersView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.application.OrderSystem.CurrentOrders"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="800"
+    d:DesignWidth="1000"
+    Background="#EEEEEE"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    Foreground="black"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="QuantityCell" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+        </Style>
+        <Style x:Key="SingleColDataGrid" TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+        </Style>
+        <Style x:Key="GridCellPad" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="15,10,0,0" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="LeftGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </UserControl.Resources>
+    <Grid Style="{StaticResource GridBackgroundMainFrame}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10*" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                x:Name="instructionText"
+                Grid.Column="0"
+                Margin="20,20,20,10"
+                FontSize="20"
+                FontWeight="Light"
+                Text="{DynamicResource currentOrderOverviewText}"
+                TextWrapping="Wrap" />
+
+        </Grid>
+        <StackPanel
+            Grid.Row="1"
+            Margin="20,0,0,0"
+            Orientation="Horizontal">
+            <Button
+                x:Name="OpenWebsite"
+                HorizontalAlignment="left"
+                Click="OpenWebsite_Click"
+                IsEnabled="False"
+                Style="{StaticResource RoundButtons}"
+                ToolTip="Webseite des Lieferanten öffnen">
+                <materialDesign:PackIcon
+                    Width="25"
+                    Height="25"
+                    Kind="Web" />
+            </Button>
+            <Button
+                x:Name="OpenEmail"
+                Margin="25,0,0,0"
+                HorizontalAlignment="left"
+                Click="OpenEmail_Click"
+                IsEnabled="False"
+                Style="{StaticResource RoundButtons}"
+                ToolTip="E-Mail an Lieferanten">
+                <materialDesign:PackIcon
+                    Width="25"
+                    Height="25"
+                    Kind="Email" />
+            </Button>
+            <Button
+                x:Name="ContactCard"
+                Margin="25,0,0,0"
+                HorizontalAlignment="left"
+                Click="ContactCard_Click"
+                IsEnabled="False"
+                Style="{StaticResource RoundButtons}"
+                ToolTip="Kontaktkarte öffnen">
+                <materialDesign:PackIcon
+                    Width="25"
+                    Height="25"
+                    Kind="CardAccountPhone" />
+            </Button>
+        </StackPanel>
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="2"
+            Margin="0,0,20,0"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                x:Name="CreatePDFBtn"
+                Grid.Column="1"
+                Width="60"
+                Margin="0,0,20,0"
+                HorizontalAlignment="Right"
+                Background="#4265A9"
+                BorderBrush="Transparent"
+                Click="CreatePdfDocument"
+                Foreground="white"
+                IsEnabled="True"
+                Style="{StaticResource NormalButton}"
+                ToolTip="Erstellt ein PDF für den aktuell ausgewählten Lieferanten"
+                Visibility="Visible">
+                <materialDesign:PackIcon
+                    Width="25"
+                    Height="25"
+                    Kind="FilePdfBox" />
+            </Button>
+            <Button
+                x:Name="DeleteOrderBtn"
+                Grid.Column="1"
+                Width="200"
+                Margin="0,0,20,0"
+                HorizontalAlignment="Right"
+                Click="DeleteOrderBtn_Click"
+                IsEnabled="False"
+                Style="{StaticResource ReportButton}">
+                <TextBlock Text="{DynamicResource deleteOrderButton}" />
+            </Button>
+            <Button
+                x:Name="EditOrderBtn"
+                Grid.Column="1"
+                Width="200"
+                Margin="0,0,0,0"
+                HorizontalAlignment="Right"
+                Click="EditOrderBtn_Click"
+                IsEnabled="False"
+                Style="{StaticResource NormalButton}">
+                <TextBlock Text="{DynamicResource editOrderButton}" />
+            </Button>
+
+        </StackPanel>
+
+
+
+        <Grid
+            Grid.Row="2"
+            Grid.Column="0"
+            Margin="20,0,20,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="5*" />
+
+            </Grid.RowDefinitions>
+            <TextBox
+                x:Name="searchBoxVendor"
+                Grid.Row="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                materialDesign:HintAssist.Hint="{DynamicResource vendorSearchBarText}"
+                AcceptsReturn="True"
+                Cursor="Hand"
+                IsEnabled="True"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                TextChanged="searchBoxVendor_TextChanged"
+                TextWrapping="Wrap" />
+            <DataGrid
+                x:Name="vendorData"
+                Grid.Row="1"
+                ItemsSource="{Binding Path=vendorData}"
+                SelectionChanged="vendorData_SelectionChanged">
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="MinHeight" Value="40" />
+                        <Setter Property="MaxHeight" Value="40" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#00F4E6" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=vendor_name}"
+                        ElementStyle="{StaticResource SingleColDataGrid}"
+                        Header="{DynamicResource vendorSingleHeader}"
+                        IsReadOnly="True" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+        </Grid>
+
+
+
+
+        <Grid
+            Grid.Row="2"
+            Grid.RowSpan="2"
+            Grid.Column="2"
+            Margin="20,0,20,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="5*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBox
+                    x:Name="searchBox"
+                    Grid.Column="0"
+                    Margin="0,0,20,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    materialDesign:HintAssist.Hint="{DynamicResource searchBarText}"
+                    AcceptsReturn="True"
+                    Cursor="Hand"
+                    IsEnabled="True"
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    TextChanged="searchBox_TextChanged"
+                    TextWrapping="Wrap" />
+                <Button
+                    x:Name="OpenBookOrderBtn"
+                    Grid.Column="1"
+                    Margin="20,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    Click="OpenBookOrderBtn_Click"
+                    IsEnabled="False"
+                    Style="{StaticResource NormalButton}">
+                    <TextBlock Text="{DynamicResource bookInItemButton}" />
+                </Button>
+            </Grid>
+
+            <DataGrid
+                x:Name="dataGridItems"
+                Grid.Row="1"
+                ItemsSource="{Binding Path=itemData}"
+                SelectionChanged="dataGridItems_SelectionChanged">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Click="CopyItemIdent" Header="Artikelnummer kopieren" />
+
+                        <MenuItem Click="CopyDescription" Header="Beschreibung kopieren" />
+
+                        <MenuItem Click="CopyAll" Header="Zeile kopieren" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="MinHeight" Value="100" />
+                        <Setter Property="MaxHeight" Value="100" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#00F4E6" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+
+                        </Style.Triggers>
+
+                    </Style>
+
+                </DataGrid.CellStyle>
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=order_ident}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="{DynamicResource orderIdentShortHeader}"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=item_ident}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="{DynamicResource itemIdentShortHeader}"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="1.5*"
+                        Binding="{Binding Path=item_description}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="{DynamicResource itemDescription1Header}"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="1.5*"
+                        Binding="{Binding Path=item_description_2}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="{DynamicResource itemDescription1Header}"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=item_diameter}"
+                        ElementStyle="{StaticResource QuantityCell}"
+                        Header="⌀ in mm"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=order_quantity}"
+                        ElementStyle="{StaticResource QuantityCell}"
+                        Header="{DynamicResource singleQuantityHeader}"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=createdAt}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="{DynamicResource datetimeHeader}"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTemplateColumn
+                        Width="2*"
+                        Header="{DynamicResource imageTableHeader}"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Width="100" RenderOptions.BitmapScalingMode="HighQuality">
+                                    <Image.Style>
+                                        <Style TargetType="Image">
+                                            <Setter Property="Source" Value="{Binding Path=item_image_path}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=item_image_path}" Value="">
+                                                    <Setter Property="Source" Value="pack://application:,,,/assets/images/default/default.jpg" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=item_image_path}" Value="{x:Null}">
+                                                    <Setter Property="Source" Value="pack://application:,,,/assets/images/default/default.jpg" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+
+    </Grid>
+
+</UserControl>

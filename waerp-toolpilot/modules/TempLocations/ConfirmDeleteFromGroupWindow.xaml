@@ -1,0 +1,94 @@
+﻿<Window
+    x:Class="waerp_toolpilot.modules.TempLocations.ConfirmDeleteFromGroupWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.modules.TempLocations"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="ErrorWindow"
+    Width="600"
+    Height="300"
+    AllowsTransparency="True"
+    Background="Transparent"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Border     
+        x:Name="ErrorWindowBorder"
+        BorderBrush="#FF5252"
+        BorderThickness="10"
+        CornerRadius="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.ColumnSpan="2" Fill="#DADADA" />
+            <materialDesign:PackIcon
+                x:Name="ErrorWindowIcon"
+                Grid.Column="0"
+                Width="260"
+                Height="260"
+                Margin="-90,0,0,0"
+                VerticalAlignment="Center"
+                Foreground="#FF5252"
+                Kind="DeleteOutline" />
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    x:Name="MessageTitle"
+                    VerticalAlignment="Center"
+                    FontSize="40"
+                    FontWeight="SemiBold"
+                    Foreground="#FF5252"
+                    Text="WARNUNG" />
+                <TextBlock
+                    x:Name="ConfirmText"
+                    Grid.Row="1"
+                    Margin="0,0,20,0"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Text="Sind Sie sich sicher, dass Sie die Artikel von der Palette löschen möchten?"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap" />
+
+                <StackPanel
+                    Grid.Row="2"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button
+                        x:Name="CancleBtn"
+                        Width="150"
+                        Margin="0,0,20,0"
+                        Background="#FF5252"
+                        BorderBrush="#FF5252"
+                        Click="CancleBtn_Click"
+                        Content="Abbrechen"
+                        Foreground="White"
+                        Style="{StaticResource MaterialDesignRaisedLightButton}" />
+                    <Button
+                        x:Name="DeleteItem"
+                        Width="150"
+                        Margin="20,0,20,0"
+                        Background="#FF5252"
+                        BorderBrush="#FF5252"
+                        Click="DeleteItem_Click"
+                        Content="Bestätigen"
+                        Foreground="White"
+                        Style="{StaticResource MaterialDesignRaisedLightButton}" />
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+
+    </Border>
+
+</Window>
+

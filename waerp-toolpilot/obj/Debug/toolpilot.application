@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xrml="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <assemblyIdentity name="toolpilot.application" version="0.9.1.75" publicKeyToken="0000000000000000" language="de" processorArchitecture="msil" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <description asmv2:publisher="Dominik Bayer" co.v1:suiteName="Managment Software für metallverarbeitende Betriebe" asmv2:product="Toolpilot" asmv2:supportUrl="https://waerp.software/software/waerp.toolpilot/support/index.html" co.v1:errorReportUrl="https://waerp.software/software/waerp.toolpilot/error/index.html" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <deployment install="true" mapFileExtensions="true" co.v1:createDesktopShortcut="true">
+    <subscription>
+      <update>
+        <expiration maximumAge="0" unit="days" />
+      </update>
+    </subscription>
+    <deploymentProvider codebase="http://toolpilot.info/download/toolpilot/toolpilot.application" />
+  </deployment>
+  <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
+    <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
+  </compatibleFrameworks>
+  <dependency>
+    <dependentAssembly dependencyType="install" codebase="toolpilot.exe.manifest" size="36543">
+      <assemblyIdentity name="toolpilot.exe" version="0.9.1.75" publicKeyToken="0000000000000000" language="de" processorArchitecture="msil" type="win32" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>1zwcmD2DW8zcYA0yt0hFXQi+mQ6gnFEomrJzv6Xq1ro=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+</asmv1:assembly>

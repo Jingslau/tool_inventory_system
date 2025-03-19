@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\waerp-toolpilot",
+    "\\waerp-toolpilot\\Installation",
+    "\\waerp-toolpilot\\loginWindows",
+    "\\waerp-toolpilot\\loginWindows\\LoginTouch",
+    "\\waerp-toolpilot\\mainGUI",
+    "\\waerp-toolpilot\\modules",
+    "\\waerp-toolpilot\\modules\\Administration",
+    "\\waerp-toolpilot\\modules\\Administration\\LocationAdministration",
+    "\\waerp-toolpilot\\themes"
+  ],
+  "SelectedNode": "\\waerp-toolpilot\\mainGUI\\MainWindow.xaml",
+  "PreviewInSolutionExplorer": false
+}

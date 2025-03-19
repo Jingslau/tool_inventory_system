@@ -1,0 +1,148 @@
+﻿<Window
+    x:Class="waerp_toolpilot.main.StartUpView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.main"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Waerp Tool-Management Login"
+    Width="600"
+    Height="300"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ContentRendered="Window_ContentRendered"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    Opacity="100"
+    ResizeMode="NoResize"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:1" />
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard Storyboard="{StaticResource FadeInStoryboard}" />
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Border
+        BorderBrush="Transparent"
+        BorderThickness="2"
+        CornerRadius="10">
+
+        <Grid>
+
+            <Rectangle
+                Grid.ColumnSpan="2"
+                Fill="#9E9E9E"
+                RadiusX="10"
+                RadiusY="10">
+
+                <!--<Rectangle.Fill>
+
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
+
+                        <GradientStop Offset="0" Color="#878787" />
+
+                        <GradientStop Offset="0.5" Color="#9E9E9E" />
+
+                    </LinearGradientBrush>
+
+                </Rectangle.Fill>-->
+
+            </Rectangle>
+            <Image
+                Grid.Row="0"
+                Width="1000"
+                Height="1000"
+                Margin="0,0,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                RenderOptions.BitmapScalingMode="HighQuality"
+                Source="\assets\images\logos\SplashLogoBg.png" />
+            <Grid Grid.Column="0">
+
+                <StackPanel VerticalAlignment="Center">
+                    <Image
+                        Grid.Row="0"
+                        Width="400"
+                        Margin="20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        RenderOptions.BitmapScalingMode="HighQuality"
+                        Source="\assets\images\logos\SplashScreenLogoBlack.png" />
+                    <ProgressBar
+                        Name="progressBar"
+                        Width="400"
+                        Height="5"
+                        Foreground="#A02619"
+                        IsIndeterminate="True"
+                        Value="0" />
+                    <TextBlock
+                        x:Name="ProgressText"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Center"
+                        FontSize="14"
+                        Text="Progress" />
+                    <!--<Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Rectangle
+                            Grid.Row="0"
+                            Width="300"
+                            Height="50"
+                            RadiusX="25"
+                            RadiusY="25">
+                            <Rectangle.Fill>
+
+                                <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
+
+                                    <GradientStop Offset="0" Color="#AAAAAA" />
+
+                                    <GradientStop Offset="0.9" Color="Transparent" />
+
+                                </LinearGradientBrush>
+
+                            </Rectangle.Fill>
+                        </Rectangle>
+
+                        <TextBlock
+                            x:Name="loadingText"
+                            Grid.Row="0"
+                            Margin="0,0,50,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="20"
+                            FontWeight="Light"
+                            Text="{Binding CheckPhase}" />
+                    </Grid>-->
+                </StackPanel>
+
+                <!--<TextBlock
+                    Grid.Row="1"
+                    Margin="20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    FontSize="13"
+                    FontWeight="Light">
+                    VERSION 0.3 [ALPHA]
+                </TextBlock>-->
+
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,246 @@
+﻿<UserControl
+    x:Class="waerp_toolpilot.modules.OrderSystem.ManageOldOrders.OldOrdersOverviewView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.modules.OrderSystem.ManageOldOrders"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="1000"
+    d:DesignWidth="1086.625"
+    Background="#EEEEEE"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    Foreground="black"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="QuantityCell" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+        </Style>
+        <Style x:Key="SingleColDataGrid" TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+        </Style>
+        <Style x:Key="GridCellPad" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="15,10,0,0" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="LeftGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </UserControl.Resources>
+    <Grid Style="{StaticResource GridBackgroundMainFrame}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="3*" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            Margin="20,20,50,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.ColumnSpan="2" Margin="20,20,20,10">
+                <TextBlock
+                    x:Name="instructionText"
+                    Grid.ColumnSpan="2"
+                    Style="{StaticResource PageHeadInstructionTextBlock}"
+                    Text="{DynamicResource oldOrederOverviewTitle1}" />
+                <TextBlock
+                    x:Name="instructionText2"
+                    Grid.ColumnSpan="2"
+                    Style="{StaticResource PageHeadInstructionTextBlock}"
+                    Text="{DynamicResource oldOrederOverviewTitle2}" />
+            </StackPanel>
+
+        </Grid>
+
+
+
+
+
+        <Grid
+            Grid.Row="2"
+            Grid.Column="0"
+            Margin="20,0,20,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="5*" />
+            </Grid.RowDefinitions>
+            <TextBox
+                x:Name="searchBoxOrder"
+                Grid.Row="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                materialDesign:HintAssist.Hint="{DynamicResource orderNumberHeader}"
+                AcceptsReturn="True"
+                Cursor="Hand"
+                IsEnabled="True"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                TextChanged="searchBoxOrder_TextChanged"
+                TextWrapping="Wrap" />
+            <DataGrid
+                x:Name="orderData"
+                Grid.Row="1"
+                ItemsSource="{Binding Path=orderData}"
+                SelectionChanged="orderData_SelectionChanged">
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="MinHeight" Value="40" />
+                        <Setter Property="MaxHeight" Value="40" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#00F4E6" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=order_ident}"
+                        ElementStyle="{StaticResource SingleColDataGrid}"
+                        Header="{DynamicResource orderNumberHeader}"
+                        IsReadOnly="True" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+        </Grid>
+
+
+
+
+        <Grid
+            Grid.Row="2"
+            Grid.RowSpan="2"
+            Grid.Column="2"
+            Margin="20,0,20,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="5*" />
+            </Grid.RowDefinitions>
+
+            <TextBox
+                x:Name="searchBox"
+                Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                materialDesign:HintAssist.Hint="{DynamicResource itemSearchBarText}"
+                AcceptsReturn="True"
+                Cursor="Hand"
+                IsEnabled="True"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                TextChanged="searchBox_TextChanged"
+                TextWrapping="Wrap" />
+
+
+
+            <DataGrid
+                x:Name="dataGridItems"
+                Grid.Row="1"
+                ItemsSource="{Binding Path=itemData}"
+                SelectionChanged="dataGridItems_SelectionChanged">
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="MinHeight" Value="100" />
+                        <Setter Property="MaxHeight" Value="100" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#9E9E9E" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+
+                        </Style.Triggers>
+
+                    </Style>
+
+                </DataGrid.CellStyle>
+
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=item_ident}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="{DynamicResource itemIdentShortHeader}"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="1.5*"
+                        Binding="{Binding Path=item_description}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="{DynamicResource itemDescription1Header}"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="1.5*"
+                        Binding="{Binding Path=item_description_2}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="{DynamicResource itemDescription1Header}"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=item_diameter}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="⌀ in mm"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=order_quantity_org}"
+                        ElementStyle="{StaticResource QuantityCell}"
+                        Header="{DynamicResource singleQuantityHeader}"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="2*"
+                        Binding="{Binding Path=createdAt}"
+                        ElementStyle="{StaticResource QuantityCell}"
+                        Header="{DynamicResource datetimeHeader}"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+
+    </Grid>
+
+</UserControl>

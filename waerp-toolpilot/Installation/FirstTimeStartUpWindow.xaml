@@ -1,0 +1,1936 @@
+﻿<Window
+    x:Class="waerp_toolpilot.FirstTimeStartup.FirstTimeStartUpWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.FirstTimeStartup"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rules="clr-namespace:waerp_toolpilot.errorHandling"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    Width="1100"
+    Height="700"
+    AllowsTransparency="True"
+    Background="Transparent"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    ResizeMode="NoResize"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="5*" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border
+            Grid.RowSpan="2"
+            BorderBrush="#222222"
+            BorderThickness="10"
+            CornerRadius="10"
+            MouseLeftButtonDown="Border_MouseLeftButtonDown">
+            <Rectangle
+                Fill="#EEEEEE"
+                RadiusX="5"
+                RadiusY="5">
+                <Rectangle.Effect>
+                    <BlurEffect KernelType="Gaussian" Radius="0" />
+                </Rectangle.Effect>
+            </Rectangle>
+        </Border>
+        <Grid Margin="10,10,10,0" Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Rectangle
+                Grid.ColumnSpan="2"
+                Fill="#222222"
+                RadiusX="5"
+                RadiusY="5" />
+            <Rectangle
+                Grid.ColumnSpan="3"
+                Margin="0,0,0,0"
+                Fill="#222222" />
+
+            <Image
+                Grid.Column="0"
+                Width="{Binding ActualWidth, ElementName=Navigation}"
+                Height="40"
+                Margin="10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                RenderOptions.BitmapScalingMode="HighQuality"
+                Source="\assets\images\logos\tooltrack-logo_black.png" />
+            <TextBlock
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="27"
+                FontWeight="Regular"
+                Foreground="White"
+                Text=" Installation" />
+
+
+
+            <Button
+                x:Name="CancleInstallationBtn"
+                Grid.Column="2"
+                Width="200"
+                Margin="0,0,20,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Click="CancleInstallationBtn_Click"
+                Content="Installation abbrechen"
+                IsEnabled="True"
+                Style="{StaticResource NormalButton}" />
+
+        </Grid>
+
+
+
+        <materialDesign:Card
+            Grid.Row="1"
+            Margin="0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="#222222">
+            <TabControl
+                x:Name="InstallationTabs"
+                Margin="10,0,10,10"
+                Background="#222222"
+                SelectionChanged="InstallationTabs_SelectionChanged"
+                Style="{StaticResource MaterialDesignTabControl}"
+                TabStripPlacement="Left">
+
+                <TabControl.Resources>
+                    <!--  BasedOn the MaterialDesign TabItem style  -->
+                    <Style BasedOn="{StaticResource MaterialDesignTabItem}" TargetType="TabItem">
+                        <!--  Set default properties  -->
+                        <Setter Property="Foreground" Value="Gray" />
+
+                        <Style.Triggers>
+                            <!--  Trigger for selected TabItem  -->
+                            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True">
+                                <Setter Property="Foreground" Value="Black" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TabControl.Resources>
+
+                <TabItem
+                    Background="#7761FE"
+                    Cursor="Hand"
+                    Header="Start">
+                    <Grid Margin="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <Border
+                            Grid.RowSpan="4"
+                            Margin="-20"
+                            MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <Rectangle Margin="0" Fill="#EFEFEF" />
+                        </Border>
+                        <TextBlock
+                            Grid.Row="0"
+                            FontSize="16"
+                            TextWrapping="Wrap">
+                            Wilkommen zu toolpilot!<LineBreak />
+                            <LineBreak />
+                            Für die Installation müssen sie einige Daten bereit halten. Hier eine Auflistung der benötigten Daten für eine erfolgreiche und schnelle Installation:</TextBlock>
+
+                        <ListBox Grid.Row="1" VerticalAlignment="Center">
+                            <ListBoxItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <BulletDecorator>
+                                        <BulletDecorator.Bullet>
+                                            <Ellipse
+                                                Width="5"
+                                                Height="5"
+                                                Fill="Black" />
+                                        </BulletDecorator.Bullet>
+                                        <TextBlock
+                                            Margin="10,0,0,0"
+                                            FontSize="16"
+                                            Text="Ein unbenutzter und gültiger Lizenzschlüssel." />
+                                    </BulletDecorator>
+                                </StackPanel>
+                            </ListBoxItem>
+
+                            <ListBoxItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <BulletDecorator>
+                                        <BulletDecorator.Bullet>
+                                            <Ellipse
+                                                Width="5"
+                                                Height="5"
+                                                Fill="Black" />
+                                        </BulletDecorator.Bullet>
+                                        <TextBlock
+                                            Margin="10,0,0,0"
+                                            FontSize="16"
+                                            Text="MySql Serveradresse, Benutzername und Passwort sowie bennung der zu nutzenden Datenbank bzw. Schemas." />
+                                    </BulletDecorator>
+                                </StackPanel>
+                            </ListBoxItem>
+
+                            <ListBoxItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <BulletDecorator>
+                                        <BulletDecorator.Bullet>
+                                            <Ellipse
+                                                Width="5"
+                                                Height="5"
+                                                Fill="Black" />
+                                        </BulletDecorator.Bullet>
+                                        <TextBlock
+                                            Margin="10,0,0,0"
+                                            FontSize="16"
+                                            Text="ggfls. Druckpapier-Dokument in PDF für automatisch erzeugte Dokumente." />
+                                    </BulletDecorator>
+                                </StackPanel>
+                            </ListBoxItem>
+                        </ListBox>
+
+
+
+
+                        <TextBlock
+                            Grid.Row="2"
+                            Margin="0,30,0,0"
+                            FontSize="16"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap">
+                            Sollten Sie während der Installation Probleme haben, dann wenden Sie sich bitte an den Supportdienst unter folgender Rufnummer +49 176 31195943 oder per E-Mail and info@toolpilot.info
+                        </TextBlock>
+                        <Button
+                            x:Name="StartNextBtn"
+                            Grid.Row="3"
+                            Grid.Column="2"
+                            Width="200"
+                            Margin="0,0,20,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Click="StartNextBtn_Click"
+                            Content="Weiter"
+                            IsEnabled="True"
+                            Style="{StaticResource NormalButton}" />
+                    </Grid>
+
+                </TabItem>
+
+                <TabItem
+                    Background="White"
+                    Cursor="Hand"
+                    Header="Lizenzvereinbarung">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.RowSpan="3" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <Rectangle Margin="0" Fill="#EFEFEF" />
+                        </Border>
+                        <TextBlock
+                            Grid.Row="0"
+                            Margin="20"
+                            FontSize="16"
+                            Text="Bitte lesen Sie die Lizenzvereinbarung vollständig durch und bestätigen Sie diese dann." />
+                        <Border
+                            Grid.Row="1"
+                            Margin="20"
+                            BorderBrush="#A7A7A7"
+                            BorderThickness="2"
+                            MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <ScrollViewer Background="#D8D8D8" ScrollChanged="ScrollViewer_ScrollChanged">
+                                <TextBox x:Name="LicenseText">Lorem</TextBox>
+                            </ScrollViewer>
+                        </Border>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <CheckBox
+                                x:Name="AcceptLicenseCheckbox"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Margin="20,0,0,20"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                Checked="AcceptLicenseCheckbox_Checked"
+                                Content="Lizenzvereinbarung zustimmen"
+                                FontSize="16"
+                                IsChecked="False"
+                                IsEnabled="False"
+                                IsThreeState="False"
+                                Unchecked="AcceptLicenseCheckbox_Unchecked" />
+                            <Button
+                                x:Name="BackBtn"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Width="200"
+                                Margin="20,0,0,20"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                Click="BackBtn_Click"
+                                Content="Zurück"
+                                IsEnabled="True"
+                                Style="{StaticResource NormalButton}" />
+                            <Button
+                                x:Name="LicenseNextBtn"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Width="200"
+                                Margin="0,0,20,20"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Click="LicenseNextBtn_Click"
+                                Content="Weiter"
+                                IsEnabled="False"
+                                Style="{StaticResource NormalButton}" />
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem
+                    Background="White"
+                    Cursor="Hand"
+                    Header="Lizenz">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.RowSpan="4" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <Rectangle Margin="0" Fill="#EFEFEF" />
+                        </Border>
+                        <TextBlock
+                            x:Name="LicenseTitelTextblock"
+                            Grid.Row="0"
+                            Margin="20"
+                            FontSize="16"
+                            Text="Bitte geben Sie Ihren Lizenzschlüssel ein und klicken Sie dann auf den Button 'Lizenz aktivieren'. Bei erfolgreicher Aktivierung erscheint ein Fenster welches den Status anzeigt und dann können Sie auf 'Weiter' klicken."
+                            TextWrapping="Wrap" />
+                        <Border
+                            x:Name="LicenseKeyInputBorder"
+                            Grid.Row="1"
+                            Width="700"
+                            Height="200"
+                            Background="#EBEBEB"
+                            BorderBrush="#A7A7A7"
+                            BorderThickness="5"
+                            CornerRadius="10"
+                            MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock
+                                    Margin="10"
+                                    HorizontalAlignment="Center"
+                                    FontSize="20"
+                                    FontWeight="Bold"
+                                    Text="Lizenzschlüssel" />
+                                <TextBlock
+                                    Margin="10"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    FontSize="14"
+                                    FontWeight="Light"
+                                    Text="Der Lizenzschlüssel hat das Format: XXXXX-XXXXX-XXXXX-XXXXX-XXXXX" />
+
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <TextBox
+                                        x:Name="licenseField1"
+                                        Width="90"
+                                        Margin="20,0,20,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        AcceptsReturn="False"
+                                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                        MaxLength="5"
+                                        PreviewKeyDown="licenseField1_PreviewKeyDown"
+                                        Style="{StaticResource MaterialDesignFilledTextBox}"
+                                        TextChanged="licenseField1_TextChanged" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Text="-" />
+                                    <TextBox
+                                        x:Name="licenseField2"
+                                        Width="90"
+                                        Margin="20,0,20,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        AcceptsReturn="False"
+                                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                        MaxLength="5"
+                                        PreviewKeyDown="licenseField1_PreviewKeyDown"
+                                        Style="{StaticResource MaterialDesignFilledTextBox}"
+                                        TextChanged="licenseField2_TextChanged" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Text="-" />
+                                    <TextBox
+                                        x:Name="licenseField3"
+                                        Width="90"
+                                        Margin="20,0,20,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        AcceptsReturn="False"
+                                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                        MaxLength="5"
+                                        PreviewKeyDown="licenseField1_PreviewKeyDown"
+                                        Style="{StaticResource MaterialDesignFilledTextBox}"
+                                        TextChanged="licenseField3_TextChanged" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Text="-" />
+                                    <TextBox
+                                        x:Name="licenseField4"
+                                        Width="90"
+                                        Margin="20,0,20,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        AcceptsReturn="False"
+                                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                        MaxLength="5"
+                                        PreviewKeyDown="licenseField1_PreviewKeyDown"
+                                        Style="{StaticResource MaterialDesignFilledTextBox}"
+                                        TextChanged="licenseField4_TextChanged" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Text="-" />
+                                    <TextBox
+                                        x:Name="licenseField5"
+                                        Width="90"
+                                        Margin="20,0,20,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        AcceptsReturn="False"
+                                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                        MaxLength="5"
+                                        PreviewKeyDown="licenseField1_PreviewKeyDown"
+                                        Style="{StaticResource MaterialDesignFilledTextBox}" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                        <Button
+                            x:Name="LicenseActivationBtn"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Width="200"
+                            Margin="20,0,20,20"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Click="LicenseActivationBtn_Click"
+                            Content="Lizenzaktivieren"
+                            IsEnabled="True"
+                            Style="{StaticResource NormalButton}" />
+                        <Grid x:Name="ButtonRowLicense" Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button
+                                Grid.Column="0"
+                                Width="200"
+                                Margin="20,0,0,20"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                Click="BackBtn_Click"
+                                Content="Zurück"
+                                IsEnabled="True"
+                                Style="{StaticResource NormalButton}" />
+                            <Button
+                                x:Name="LicenseActivationNextBtn"
+                                Grid.Column="1"
+                                Width="200"
+                                Margin="0,0,20,20"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Click="LicenseActivationNextBtn_Click"
+                                Content="Weiter"
+                                IsEnabled="False"
+                                Style="{StaticResource NormalButton}" />
+                        </Grid>
+                        <materialDesign:Card
+                            x:Name="ShowLoadingLicense"
+                            Grid.RowSpan="4"
+                            Padding="4"
+                            Background="Transparent"
+                            UniformCornerRadius="14"
+                            Visibility="Hidden">
+                            <ProgressBar
+                                x:Name="ProgressBarLicenseCircle"
+                                Grid.Row="1"
+                                Width="60"
+                                Height="60"
+                                Foreground="#A02619"
+                                IsIndeterminate="True"
+                                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                Value="0">
+                                <ProgressBar.LayoutTransform>
+                                    <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="2" ScaleY="2" />
+                                </ProgressBar.LayoutTransform>
+                            </ProgressBar>
+                        </materialDesign:Card>
+                    </Grid>
+
+                </TabItem>
+
+                <TabItem
+                    Background="White"
+                    Cursor="Hand"
+                    Header="Datenbank">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border
+                            Grid.RowSpan="3"
+                            Grid.ColumnSpan="2"
+                            MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <Rectangle Margin="0" Fill="#EFEFEF" />
+                        </Border>
+                        <Border
+                            Margin="10,10,0,10"
+                            BorderBrush="#8C8C8C"
+                            BorderThickness="5"
+                            CornerRadius="5"
+                            MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <Grid Grid.Row="0" Grid.Column="0">
+                                <Rectangle
+                                    Margin="-1"
+                                    Fill="#EEEEEE"
+                                    RadiusX="5"
+                                    RadiusY="5"
+                                    Stroke="#8C8C8C" />
+                                <StackPanel>
+                                    <TextBox
+                                        x:Name="ServerAdress"
+                                        MaxWidth="400"
+                                        Margin="10"
+                                        VerticalAlignment="Center"
+                                        materialDesign:HintAssist.Hint="Serveradresse"
+                                        materialDesign:TextFieldAssist.HasClearButton="True"
+                                        AcceptsReturn="True"
+                                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                        Style="{StaticResource MaterialDesignFilledTextBox}"
+                                        TextWrapping="Wrap" />
+
+                                    <TextBox
+                                        x:Name="DatabaseUser"
+                                        MaxWidth="400"
+                                        Margin="10"
+                                        VerticalAlignment="Center"
+                                        materialDesign:HintAssist.Hint="Benutzername"
+                                        materialDesign:TextFieldAssist.HasClearButton="True"
+                                        AcceptsReturn="True"
+                                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                        Style="{StaticResource MaterialDesignFilledTextBox}"
+                                        TextWrapping="Wrap" />
+                                    <PasswordBox
+                                        x:Name="DatabasePassword"
+                                        MaxWidth="400"
+                                        Margin="10"
+                                        VerticalAlignment="Center"
+                                        materialDesign:HintAssist.Hint="Passwort"
+                                        IsEnabled="{Binding ElementName=RevealPasswordFilledEnabled, Path=IsChecked}"
+                                        Style="{StaticResource MaterialDesignFilledRevealPasswordBox}" />
+
+
+                                    <TextBox
+                                        x:Name="ServerSchema"
+                                        MaxWidth="400"
+                                        Margin="10"
+                                        VerticalAlignment="Center"
+                                        materialDesign:HintAssist.Hint="Datenbank Schema"
+                                        AcceptsReturn="True"
+                                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                        Style="{StaticResource MaterialDesignFilledTextBox}"
+                                        TextWrapping="Wrap" />
+                                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                        <Button
+                                            Margin="10"
+                                            Click="TestConnection_Click"
+                                            Content="Verbindung testen"
+                                            Style="{StaticResource NormalButton}" />
+                                        <Button
+                                            x:Name="SaveValues"
+                                            Margin="10"
+                                            Click="SaveValues_Click"
+                                            Content="Werte speichern"
+                                            IsEnabled="False"
+                                            Style="{StaticResource NormalButton}" />
+                                        <Button
+                                            x:Name="ConfigureDB"
+                                            Margin="10"
+                                            Click="ConfigureDB_Click"
+                                            Content="Datenbank anlegen"
+                                            IsEnabled="False"
+                                            Style="{StaticResource NormalButton}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                        <Border
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="10,10,10,10"
+                            BorderBrush="#8C8C8C"
+                            BorderThickness="5"
+                            CornerRadius="5"
+                            MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <Rectangle
+                                Margin="-1"
+                                Fill="#EEEEEE"
+                                RadiusX="5"
+                                RadiusY="5"
+                                Stroke="#8C8C8C" />
+                        </Border>
+
+                        <Grid
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="20,20,20,20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+
+                                    <RowDefinition Height="*" />
+
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Rectangle
+                                    Grid.RowSpan="3"
+                                    Margin="0,10,0,10"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Fill="#DFDFDF"
+                                    RadiusX="10"
+                                    RadiusY="10" />
+                                <Rectangle
+                                    x:Name="ValidationDatabaseBar"
+                                    Grid.Row="0"
+                                    Height="10"
+                                    Margin="10,15,10,0"
+                                    Fill="#A94C42"
+                                    RadiusX="5"
+                                    RadiusY="5" />
+                                <TextBlock
+                                    Grid.Row="1"
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    FontWeight="DemiBold"
+                                    Text="Datenbanken Verbindung"
+                                    TextAlignment="Center" />
+                                <TextBlock
+                                    x:Name="DatabaseConnectionStatus"
+                                    Grid.Row="2"
+                                    Margin="0,0,0,15"
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    FontWeight="Light"
+                                    Text="Status: "
+                                    TextAlignment="Center" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+
+                                    <RowDefinition Height="*" />
+
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Rectangle
+                                    Grid.RowSpan="3"
+                                    Margin="0,10,0,10"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Fill="#DFDFDF"
+                                    RadiusX="10"
+                                    RadiusY="10" />
+                                <Rectangle
+                                    x:Name="ValidationSchemaBar"
+                                    Grid.Row="0"
+                                    Height="10"
+                                    Margin="10,15,10,0"
+                                    Fill="#A94C42"
+                                    RadiusX="5"
+                                    RadiusY="5" />
+                                <TextBlock
+                                    Grid.Row="1"
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    FontWeight="DemiBold"
+                                    Text="Datenbanken Schema"
+                                    TextAlignment="Center" />
+                                <TextBlock
+                                    x:Name="DatabaseSchemaStatus"
+                                    Grid.Row="2"
+                                    Margin="0,0,0,15"
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    FontWeight="Light"
+                                    Text="Status: "
+                                    TextAlignment="Center" />
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+
+                                    <RowDefinition Height="*" />
+
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Rectangle
+                                    Grid.RowSpan="3"
+                                    Margin="0,10,0,10"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Fill="#DFDFDF"
+                                    RadiusX="10"
+                                    RadiusY="10" />
+                                <Rectangle
+                                    x:Name="ValidationTablesBar"
+                                    Grid.Row="0"
+                                    Height="10"
+                                    Margin="10,15,10,0"
+                                    Fill="#A94C42"
+                                    RadiusX="5"
+                                    RadiusY="5" />
+                                <TextBlock
+                                    Grid.Row="1"
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    FontWeight="DemiBold"
+                                    Text="Datenbanken Tabellen"
+                                    TextAlignment="Center" />
+                                <TextBlock
+                                    x:Name="DatabaseTablesStatus"
+                                    Grid.Row="2"
+                                    Margin="0,0,0,15"
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    FontWeight="Light"
+                                    Text="Status: "
+                                    TextAlignment="Center" />
+                            </Grid>
+                            <Grid x:Name="SuccessInfo" Grid.Row="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    x:Name="SuccessText"
+                                    Grid.Column="0"
+                                    Margin="10,10,10,10"
+                                    VerticalAlignment="Center"
+                                    FontSize="18"
+                                    FontWeight="Regular"
+                                    Foreground="#34864B"
+                                    Text="Die neuen Datenbankdaten wurden erfolgreich gespeichert! Sie können nun auf WEITER klicken."
+                                    TextAlignment="Right"
+                                    TextWrapping="Wrap"
+                                    Visibility="Hidden" />
+                                <materialDesign:PackIcon
+                                    x:Name="SuccessIcon"
+                                    Grid.Column="1"
+                                    Width="50"
+                                    Height="50"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="#34864B"
+                                    Kind="CheckboxMarkedCircleOutline"
+                                    Visibility="Hidden" />
+                            </Grid>
+                            <Grid
+                                x:Name="NewDatabaseInfo"
+                                Grid.Row="3"
+                                Visibility="Visible">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock
+                                    x:Name="InfoText"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Margin="10,10,10,10"
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    FontWeight="Regular"
+                                    Foreground="#A02619"
+                                    Text="Das von Ihnen gewählte Datenbank Schema entspricht nicht den Vorgaben. Klicken Sie auf Datenbank anlegen um das korrekte Schema zu hinterlegen.  "
+                                    TextAlignment="Left"
+                                    TextWrapping="Wrap" />
+                                <TextBlock
+                                    x:Name="InfoAlertText"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Margin="10,10,10,10"
+                                    VerticalAlignment="Center"
+                                    FontSize="11"
+                                    FontWeight="Regular"
+                                    Foreground="#A02619"
+                                    Text="Achtung: Es dürfen keine Tabellen in diesem Schema exisitieren!"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap" />
+
+                                <materialDesign:PackIcon
+                                    x:Name="InfoIcon"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="1"
+                                    Width="50"
+                                    Height="50"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="#A02619"
+                                    Kind="AlertOutline" />
+                            </Grid>
+
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                Grid.Column="0"
+                                Width="200"
+                                Margin="20,0,0,20"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                Click="BackBtn_Click"
+                                Content="Zurück"
+                                IsEnabled="True"
+                                Style="{StaticResource NormalButton}" />
+                            <Button
+                                x:Name="DatabaseNextBtn"
+                                Grid.Column="1"
+                                Width="200"
+                                Margin="0,0,20,20"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Click="DatabaseNextBtn_Click"
+                                Content="Weiter"
+                                IsEnabled="False"
+                                Style="{StaticResource NormalButton}" />
+                        </Grid>
+                    </Grid>
+
+                </TabItem>
+                <TabItem
+                    x:Name="SaveLoations"
+                    Background="White"
+                    Cursor="Hand"
+                    Header="Speicherorte">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="4*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.RowSpan="3" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <Rectangle Margin="0" Fill="#EFEFEF" />
+                        </Border>
+                        <TextBlock
+                            Grid.Row="0"
+                            Margin="20"
+                            FontSize="16"
+                            Text="Bitte geben Sie die Ordner an, in denen Dokumente gespeichert werden sollen. Sie können auch einfach auf weiter klicken, dann werden die Dokumente automatisch im Systemordner '.../AppData/Roaming/toolpilot/' gespeichert." />
+                        <StackPanel Grid.Row="1" Orientation="Vertical">
+                            <Grid Margin="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.ColumnSpan="2"
+                                    Margin="20,20,20,10"
+                                    FontSize="14"
+                                    Text="Speicherort für Artikelbilder" />
+                                <TextBox
+                                    x:Name="imageFolderPath"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Margin="20,0,20,0"
+                                    VerticalAlignment="Center"
+                                    materialDesign:HintAssist.Hint="Speicherort Artikelbilder"
+                                    AcceptsReturn="False"
+                                    IsEnabled="False"
+                                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                                    Text="...\AppData\Roaming\toolpilot\Bilder" />
+                                <Button
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Width="82"
+                                    Margin="0,0,20,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Click="selectImageFolderPath"
+                                    Style="{StaticResource NormalButton}">
+                                    <materialDesign:PackIcon Kind="File" />
+                                </Button>
+                            </Grid>
+                            <Grid Margin="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.ColumnSpan="2"
+                                    Margin="20,20,20,10"
+                                    FontSize="14"
+                                    Text="Speicherort für Bestellungen" />
+                                <TextBox
+                                    x:Name="orderPathText"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Margin="20,0,20,0"
+                                    VerticalAlignment="Center"
+                                    materialDesign:HintAssist.Hint="Speicherort für Dokumente"
+                                    AcceptsReturn="False"
+                                    IsEnabled="False"
+                                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                                    Text="...\AppData\Roaming\toolpilot\Bestellungen" />
+                                <Button
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Width="82"
+                                    Margin="0,0,20,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Click="selectOrderPath"
+                                    Style="{StaticResource NormalButton}">
+                                    <materialDesign:PackIcon Kind="File" />
+                                </Button>
+                            </Grid>
+                            <Grid Margin="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.ColumnSpan="2"
+                                    Margin="20,20,20,10"
+                                    FontSize="14"
+                                    Text="Speicherort für Historienauszüge" />
+                                <TextBox
+                                    x:Name="historyPathText"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Margin="20,0,20,0"
+                                    VerticalAlignment="Center"
+                                    materialDesign:HintAssist.Hint="Speicherort für Dokumente"
+                                    AcceptsReturn="False"
+                                    IsEnabled="False"
+                                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                                    Text="...\AppData\Roaming\toolpilot\History_Files" />
+                                <Button
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Margin="0,0,20,0"
+                                    VerticalAlignment="Center"
+                                    Click="selectHistoryPath"
+                                    Style="{StaticResource NormalButton}">
+                                    <materialDesign:PackIcon Kind="File" />
+                                </Button>
+                            </Grid>
+                            <Grid Margin="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.ColumnSpan="2"
+                                    Margin="20,20,20,10"
+                                    FontSize="14"
+                                    Text="Speicherort für Prüfprotokolle" />
+                                <TextBox
+                                    x:Name="ControlText"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Margin="20,0,20,0"
+                                    VerticalAlignment="Center"
+                                    materialDesign:HintAssist.Hint="Speicherort für Prüfprotokolle"
+                                    AcceptsReturn="False"
+                                    IsEnabled="False"
+                                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                                    Text="...\AppData\Roaming\toolpilot\Protokolle" />
+                                <Button
+                                    x:Name="ControlBtn"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Margin="0,0,20,0"
+                                    VerticalAlignment="Center"
+                                    Click="ControlBtn_Click"
+                                    Style="{StaticResource NormalButton}">
+                                    <materialDesign:PackIcon Kind="File" />
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                        <Grid Grid.Row="2" Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                Grid.Column="0"
+                                Width="200"
+                                Margin="20,0,0,20"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                Click="BackBtn_Click"
+                                Content="Zurück"
+                                IsEnabled="True"
+                                Style="{StaticResource NormalButton}" />
+                            <Button
+                                x:Name="FolderNextBtn"
+                                Grid.Column="1"
+                                Width="200"
+                                Margin="0,0,20,20"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Click="FolderNextBtn_Click"
+                                Content="Weiter"
+                                IsEnabled="True"
+                                Style="{StaticResource NormalButton}" />
+                        </Grid>
+                    </Grid>
+
+                </TabItem>
+                <TabItem
+                    x:Name="StandardValues"
+                    Background="White"
+                    Cursor="Hand"
+                    Header="Standardwerte">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*" />
+
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.RowSpan="3" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <Rectangle Margin="0" Fill="#EFEFEF" />
+                        </Border>
+                        <ScrollViewer>
+                            <StackPanel>
+                                <Grid Margin="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.ColumnSpan="2"
+                                        Margin="20,20,20,10"
+                                        FontSize="14"
+                                        Text="Firmendaten für Dokumente" />
+                                    <Grid Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBox
+                                            x:Name="companyName"
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Margin="20,0,10,10"
+                                            VerticalAlignment="Center"
+                                            materialDesign:HintAssist.Hint="Firmenname"
+                                            AcceptsReturn="False"
+                                            IsEnabled="True"
+                                            Style="{StaticResource MaterialDesignFilledTextBox}" />
+                                        <TextBox
+                                            x:Name="companyAdress"
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Margin="20,0,10,10"
+                                            VerticalAlignment="Center"
+                                            materialDesign:HintAssist.Hint="Adresse"
+                                            AcceptsReturn="False"
+                                            IsEnabled="True"
+                                            Style="{StaticResource MaterialDesignFilledTextBox}" />
+                                        <TextBox
+                                            x:Name="companyCity"
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            Margin="20,0,10,10"
+                                            VerticalAlignment="Center"
+                                            materialDesign:HintAssist.Hint="Stadt"
+                                            AcceptsReturn="False"
+                                            IsEnabled="True"
+                                            Style="{StaticResource MaterialDesignFilledTextBox}" />
+                                        <TextBox
+                                            x:Name="companyZIP"
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            Margin="10,0,20,10"
+                                            VerticalAlignment="Center"
+                                            materialDesign:HintAssist.Hint="PLZ"
+                                            AcceptsReturn="False"
+                                            IsEnabled="True"
+                                            PreviewTextInput="companyZIP_PreviewTextInput"
+                                            Style="{StaticResource MaterialDesignFilledTextBox}" />
+                                        <TextBox
+                                            x:Name="companyPhone"
+                                            Grid.Row="3"
+                                            Grid.Column="0"
+                                            Margin="20,0,10,10"
+                                            VerticalAlignment="Center"
+                                            materialDesign:HintAssist.Hint="Telefon"
+                                            AcceptsReturn="False"
+                                            IsEnabled="True"
+                                            Style="{StaticResource MaterialDesignFilledTextBox}" />
+                                        <TextBox
+                                            x:Name="companyMail"
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            Margin="10,0,20,10"
+                                            VerticalAlignment="Center"
+                                            materialDesign:HintAssist.Hint="E-Mail"
+                                            AcceptsReturn="False"
+                                            IsEnabled="True"
+                                            Style="{StaticResource MaterialDesignFilledTextBox}" />
+                                    </Grid>
+                                </Grid>
+                                <Grid Margin="20,0,20,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.ColumnSpan="2"
+                                        Margin="0,20,20,10"
+                                        FontSize="14"
+                                        Text="Standard für numerische Daten" />
+                                    <StackPanel
+                                        Grid.Row="1"
+                                        Margin="0,0,20,10"
+                                        Orientation="Vertical">
+                                        <RadioButton
+                                            x:Name="isComma"
+                                            Margin="0,0,0,20"
+                                            Checked="isComma_Checked"
+                                            Content="KOMMA:  , "
+                                            IsChecked="True"
+                                            Style="{StaticResource MaterialDesignRadioButton}"
+                                            Tag="True" />
+                                        <RadioButton
+                                            x:Name="isPoint"
+                                            Checked="isPoint_Checked"
+                                            Content="PUNKT:  . "
+                                            Style="{StaticResource MaterialDesignRadioButton}"
+                                            Tag="True" />
+                                    </StackPanel>
+                                    <ComboBox
+                                        x:Name="CurrencyCombobox"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="100"
+                                        Margin="10,0,0,0"
+                                        HorizontalAlignment="left"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Währung"
+                                        IsEditable="False"
+                                        IsEnabled="True"
+                                        SelectionChanged="CurrencyCombobox_SelectionChanged"
+                                        Style="{StaticResource MaterialDesignFilledComboBox}" />
+
+                                </Grid>
+
+                                <Grid Margin="20,0,20,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.ColumnSpan="2"
+                                        Margin="0,20,20,10"
+                                        FontSize="14"
+                                        Text="Adressen für automatisierte Rückmeldungen" />
+                                    <TextBox
+                                        x:Name="wrongLocationMail"
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Margin="0,0,10,0"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Fehlbestände"
+                                        AcceptsReturn="True"
+                                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                        Style="{StaticResource MaterialDesignFilledTextBox}"
+                                        TextWrapping="Wrap" />
+                                    <TextBox
+                                        x:Name="orderMail"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="10,0,0,0"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Bestellungen"
+                                        AcceptsReturn="True"
+                                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                        Style="{StaticResource MaterialDesignFilledTextBox}"
+                                        TextWrapping="Wrap" />
+                                </Grid>
+                                <Grid Margin="20,0,20,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.ColumnSpan="2"
+                                        Margin="0,20,20,10"
+                                        FontSize="14"
+                                        Text="Adressen für automatisierte Rückmeldungen" />
+                                    <StackPanel Grid.Row="1" Grid.Column="0">
+                                        <TextBox
+                                            x:Name="smtpHost"
+                                            Margin="0,0,10,10"
+                                            VerticalAlignment="Center"
+                                            materialDesign:HintAssist.Hint="SMTP Host"
+                                            AcceptsReturn="False"
+                                            IsEnabled="True"
+                                            Style="{StaticResource MaterialDesignFilledTextBox}" />
+                                        <PasswordBox
+                                            x:Name="companyMailPassword"
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Margin="0,0,10,0"
+                                            VerticalAlignment="Center"
+                                            materialDesign:HintAssist.Hint="Passwort"
+                                            IsEnabled="{Binding ElementName=RevealPasswordFilledEnabled, Path=IsChecked}"
+                                            Style="{StaticResource MaterialDesignFilledRevealPasswordBox}" />
+                                        <TextBlock
+                                            Margin="0,10,0,0"
+                                            Foreground="Gray"
+                                            Text="Info: Hier wird das Passwort für Ihre Firmenemailadresse benötigt." />
+                                    </StackPanel>
+
+                                    <TextBox
+                                        x:Name="smtpPort"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="10,0,0,0"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Port"
+                                        AcceptsReturn="False"
+                                        IsEnabled="True"
+                                        Style="{StaticResource MaterialDesignFilledTextBox}" />
+
+
+                                    <StackPanel
+                                        Grid.Row="2"
+                                        Grid.ColumnSpan="2"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Bottom"
+                                        Orientation="Horizontal">
+                                        <Button
+                                            x:Name="TestSMTPConn"
+                                            Grid.Column="1"
+                                            Width="190"
+                                            Margin="20,20,20,20"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Click="TestSMTPConn_Click"
+                                            Content="Verbindung testen"
+                                            IsEnabled="True"
+                                            Style="{StaticResource NormalButton}" />
+
+                                    </StackPanel>
+
+
+                                    <Grid
+                                        x:Name="SuccessInfoMail"
+                                        Grid.Row="3"
+                                        Grid.ColumnSpan="2"
+                                        Visibility="Hidden">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock
+                                            x:Name="SuccessTextMail"
+                                            Grid.Column="0"
+                                            Margin="10,10,10,10"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            FontWeight="Regular"
+                                            Foreground="#34864B"
+                                            Text="Die Verbindung mit dem SMTP Server war erfolgreich."
+                                            TextAlignment="Right"
+                                            TextWrapping="Wrap"
+                                            Visibility="Visible" />
+                                        <materialDesign:PackIcon
+                                            x:Name="SuccessIconMail"
+                                            Grid.Column="1"
+                                            Width="50"
+                                            Height="50"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Foreground="#34864B"
+                                            Kind="CheckboxMarkedCircleOutline"
+                                            Visibility="Visible" />
+                                    </Grid>
+                                    <Grid
+                                        x:Name="ErrorInfoMail"
+                                        Grid.Row="3"
+                                        Grid.ColumnSpan="2"
+                                        Visibility="Hidden">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock
+                                            x:Name="ErrorTextMail"
+                                            Grid.Column="0"
+                                            Margin="10,10,10,10"
+                                            VerticalAlignment="Center"
+                                            FontSize="18"
+                                            FontWeight="Regular"
+                                            Foreground="#A02619"
+                                            Text="Die Verbindung mit dem SMTP Server war nicht erfolgreich. Bitte überprüfen Sie Ihre Einstellungen um fortzufahren!"
+                                            TextAlignment="Right"
+                                            TextWrapping="Wrap"
+                                            Visibility="Visible" />
+                                        <materialDesign:PackIcon
+                                            x:Name="ErrorIconMail"
+                                            Grid.Column="1"
+                                            Width="50"
+                                            Height="50"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Foreground="#A02619"
+                                            Kind="AlertCircleOutline"
+                                            Visibility="Visible" />
+                                    </Grid>
+                                </Grid>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <Grid Grid.Row="2" Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                Grid.Column="0"
+                                Width="200"
+                                Margin="20,0,0,20"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                Click="BackBtn_Click"
+                                Content="Zurück"
+                                IsEnabled="True"
+                                Style="{StaticResource NormalButton}" />
+                            <Button
+                                x:Name="StandardValuesNextBtn"
+                                Grid.Column="1"
+                                Width="200"
+                                Margin="0,0,20,20"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Click="StandardValuesNextBtn_Click"
+                                Content="Weiter"
+                                IsEnabled="True"
+                                Style="{StaticResource NormalButton}" />
+                        </Grid>
+                    </Grid>
+                </TabItem>
+
+                <TabItem
+                    x:Name="PrintInformations"
+                    Background="White"
+                    Cursor="Hand"
+                    Header="Druckinformationen">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+
+
+
+                            <RowDefinition Height="6*" />
+
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+
+                            <ColumnDefinition Width="*" />
+
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border
+                            Grid.RowSpan="4"
+                            Grid.ColumnSpan="3"
+                            MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <Rectangle Margin="0" Fill="#EFEFEF" />
+                        </Border>
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.ColumnSpan="3"
+                            Margin="20"
+                            FontSize="16"
+                            Text="Stellen Sie hier die Druckeinstellungen ein. Die hier hinterlegten Werte werden für das erstellen von Dokumenten benutzt. Sie haben auch die Möglichkeit Ihr Briefpapier zu hinterlegen. Sollten Sie auf schon vorbedruckten Briefpapier drucken, dann setzten Sie den Hacken bei 'kein Briefpapier'."
+                            TextWrapping="Wrap" />
+
+
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <StackPanel
+                                Margin="10"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center">
+                                <TextBox
+                                    x:Name="marginLeft"
+                                    Grid.Column="1"
+                                    Margin="10,0,10,10"
+                                    VerticalAlignment="Center"
+                                    materialDesign:HintAssist.Hint="Randabstand links (mm)"
+                                    AcceptsReturn="False"
+                                    IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                    PreviewTextInput="marginLeft_PreviewTextInput"
+                                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                                    TextChanged="marginLeft_TextChanged" />
+                                <TextBox
+                                    x:Name="marginRight"
+                                    Grid.Column="1"
+                                    Margin="10,0,10,0"
+                                    VerticalAlignment="Center"
+                                    materialDesign:HintAssist.Hint="Randabstand rechts (mm)"
+                                    AcceptsReturn="False"
+                                    IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                    PreviewTextInput="marginLeft_PreviewTextInput"
+                                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                                    TextChanged="marginRight_TextChanged" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="1" Grid.Column="2">
+                            <StackPanel
+                                Margin="10"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center">
+
+                                <TextBox
+                                    x:Name="marginTop"
+                                    Grid.Column="1"
+                                    Margin="10,0,10,10"
+                                    VerticalAlignment="Center"
+                                    materialDesign:HintAssist.Hint="Randabstand oben (mm)"
+                                    AcceptsReturn="False"
+                                    IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                    PreviewTextInput="marginLeft_PreviewTextInput"
+                                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                                    TextChanged="marginTop_TextChanged" />
+
+                                <TextBox
+                                    x:Name="marginBottom"
+                                    Grid.Column="1"
+                                    Margin="10,0,10,0"
+                                    VerticalAlignment="Center"
+                                    materialDesign:HintAssist.Hint="Randabstand unten (mm)"
+                                    AcceptsReturn="False"
+                                    IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                                    PreviewTextInput="marginLeft_PreviewTextInput"
+                                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                                    TextChanged="marginBottom_TextChanged" />
+                            </StackPanel>
+
+
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="1.2*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox
+                                x:Name="PDFFilePath"
+                                Grid.Column="0"
+                                Margin="20,0,20,0"
+                                VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Briefpapier Datei"
+                                AcceptsReturn="False"
+                                IsEnabled="False"
+                                Style="{StaticResource MaterialDesignFilledTextBox}"
+                                Text="" />
+                            <Button
+                                x:Name="SelectFileBtn"
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Click="selectPdfDocument"
+                                IsEnabled="False"
+                                Style="{StaticResource NormalButton}">
+                                <materialDesign:PackIcon Kind="File" />
+                            </Button>
+                            <CheckBox
+                                x:Name="NoBackletterCheckbox"
+                                Grid.Column="2"
+                                Margin="0,0,20,0"
+                                HorizontalAlignment="Right"
+                                Checked="NoBackletterCheckbox_Checked"
+                                Content="Kein Briefpapier"
+                                IsChecked="True"
+                                IsThreeState="False"
+                                Unchecked="NoBackletterCheckbox_Unchecked" />
+                        </Grid>
+
+                        <Border
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Width="240"
+                            Height="320"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="LightGray"
+                            BorderBrush="Black"
+                            BorderThickness="3"
+                            MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <Image
+                                    Grid.Row="0"
+                                    Height="290"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    RenderOptions.BitmapScalingMode="HighQuality"
+                                    Source="\assets\images\app\Druckdatei_wærp_Briefpapier-din5008-form-b.jpg" />
+
+                                <Rectangle
+                                    x:Name="LeftMarginBarOrigin"
+                                    Width="1"
+                                    Height="320"
+                                    Margin="20,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    Fill="#CDCDCD" />
+                                <Rectangle
+                                    x:Name="RightMarginBarOrigin"
+                                    Width="1"
+                                    Height="320"
+                                    Margin="0,0,20,0"
+                                    HorizontalAlignment="Right"
+                                    Fill="#CDCDCD" />
+                                <Rectangle
+                                    x:Name="TopMarginBarOrigin"
+                                    Width="300"
+                                    Height="1"
+                                    Margin="0,20,0,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top"
+                                    Fill="#CDCDCD" />
+                                <Rectangle
+                                    x:Name="BottomMarginBarOrigin"
+                                    Width="300"
+                                    Height="1"
+                                    Margin="0,0,0,20"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    Fill="#CDCDCD" />
+                                <Rectangle
+                                    x:Name="LeftMarginBar"
+                                    Width="1"
+                                    Height="320"
+                                    Margin="20,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    Fill="Black" />
+                                <Rectangle
+                                    x:Name="RightMarginBar"
+                                    Width="1"
+                                    Height="320"
+                                    Margin="0,0,20,0"
+                                    HorizontalAlignment="Right"
+                                    Fill="Black" />
+                                <Rectangle
+                                    x:Name="TopMarginBar"
+                                    Width="300"
+                                    Height="1"
+                                    Margin="0,20,0,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top"
+                                    Fill="Black" />
+                                <Rectangle
+                                    x:Name="BottomMarginBar"
+                                    Width="300"
+                                    Height="1"
+                                    Margin="0,0,0,20"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    Fill="Black" />
+
+                            </Grid>
+
+                        </Border>
+                        <Grid Grid.Row="3" Grid.ColumnSpan="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                Grid.Column="0"
+                                Width="200"
+                                Margin="20,0,0,20"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                Click="BackBtn_Click"
+                                Content="Zurück"
+                                IsEnabled="True"
+                                Style="{StaticResource NormalButton}" />
+                            <Button
+                                x:Name="PrintValuesNextBtn"
+                                Grid.Column="1"
+                                Width="200"
+                                Margin="0,0,20,20"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Click="PrintValuesNextBtn_Click"
+                                Content="Weiter"
+                                IsEnabled="True"
+                                Style="{StaticResource NormalButton}" />
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem
+                    Background="White"
+                    Cursor="Hand"
+                    Header="Installation">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.RowSpan="3" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <Rectangle Margin="0" Fill="#EFEFEF" />
+                        </Border>
+                        <TextBlock
+                            x:Name="FinishInstallTextblockTop"
+                            Grid.Row="0"
+                            Margin="20"
+                            FontSize="16"
+                            Text="Bitte geben Sie zum Abschluss der Installation noch an, ob Sie eine Touchoberfläche benutzen oder Maus und Tastatur zur Bedienung benutzen. Diese Einstellungen können Sie jederzeit nach der Installation in den Einstellungen ändern."
+                            TextWrapping="Wrap" />
+
+                        <StackPanel
+                            x:Name="SelectInputStackpanel"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Border
+                                x:Name="SelectTouchBorder"
+                                Width="300"
+                                Height="200"
+                                Margin="20"
+                                Background="#D8D8D8"
+                                BorderBrush="#A7A7A7"
+                                BorderThickness="2"
+                                CornerRadius="10"
+                                MouseLeftButtonDown="Border_MouseLeftButtonDown">
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <materialDesign:PackIcon
+                                        Grid.RowSpan="2"
+                                        Grid.ColumnSpan="2"
+                                        Width="150"
+                                        Height="150"
+                                        Margin="0,0,10,10"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="#B6B6B6"
+                                        Kind="GestureTapButton" />
+                                    <TextBlock
+                                        Grid.ColumnSpan="2"
+                                        Margin="20,20,0,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="35"
+                                        FontWeight="DemiBold"
+                                        Text="Toucheingabe" />
+
+                                </Grid>
+                            </Border>
+                            <Border
+                                x:Name="SelectMandKInputBorder"
+                                Width="300"
+                                Height="200"
+                                Margin="20"
+                                Background="#D8D8D8"
+                                BorderBrush="#A7A7A7"
+                                BorderThickness="2"
+                                CornerRadius="10"
+                                MouseLeftButtonDown="SelectMandKInputBorder_MouseLeftButtonDown">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <materialDesign:PackIcon
+                                        Grid.RowSpan="2"
+                                        Grid.ColumnSpan="2"
+                                        Width="90"
+                                        Height="90"
+                                        Margin="90,0,0,30"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="#B6B6B6"
+                                        Kind="Mouse" />
+                                    <materialDesign:PackIcon
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"
+                                        Width="130"
+                                        Height="130"
+                                        Margin="0,0,0,10"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        Foreground="#B6B6B6"
+                                        Kind="KeyboardOutline" />
+                                    <TextBlock
+                                        Grid.ColumnSpan="2"
+                                        Margin="20,20,0,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="35"
+                                        FontWeight="DemiBold"
+                                        Text="Maus und Tastatur"
+                                        TextWrapping="Wrap" />
+
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                        <Grid Grid.Row="3" Grid.ColumnSpan="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                x:Name="GoBackFinishInstallBtn"
+                                Grid.Column="0"
+                                Width="200"
+                                Margin="20,0,0,20"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                Click="BackBtn_Click"
+                                Content="Zurück"
+                                IsEnabled="True"
+                                Style="{StaticResource NormalButton}" />
+                            <Button
+                                x:Name="FinishInstallationBtn"
+                                Grid.Column="1"
+                                Width="200"
+                                Margin="0,0,20,20"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Click="FinishInstallationBtn_Click"
+                                Content="Installation abschließen"
+                                IsEnabled="True"
+                                Style="{StaticResource NormalButton}" />
+                        </Grid>
+                        <materialDesign:Card
+                            x:Name="ShowLoadingFinish"
+                            Grid.RowSpan="3"
+                            Padding="4"
+                            Background="Transparent"
+                            UniformCornerRadius="14"
+                            Visibility="Hidden">
+                            <ProgressBar
+                                x:Name="ProgressBarCircle"
+                                Grid.Row="1"
+                                Width="60"
+                                Height="60"
+                                Foreground="#A02619"
+                                IsIndeterminate="True"
+                                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                Value="0">
+                                <ProgressBar.LayoutTransform>
+                                    <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="2" ScaleY="2" />
+                                </ProgressBar.LayoutTransform>
+                            </ProgressBar>
+                        </materialDesign:Card>
+                    </Grid>
+
+                </TabItem>
+                <TabItem
+                    Background="White"
+                    Cursor="Hand"
+                    Header="Zusammenfassung">
+                    <Grid>
+                        <Border Grid.RowSpan="3" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <Rectangle Margin="0" Fill="#EFEFEF" />
+                        </Border>
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Vertical">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="30"
+                                Text="Sie haben die Installation erfolgreich abgeschlossen!" />
+                            <CheckBox
+                                x:Name="StartApplicationNowCheckbox"
+                                Grid.Column="0"
+                                Margin="0,90,0,90"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="Toolpilot jetzt starten"
+                                FontSize="20"
+                                IsChecked="True"
+                                IsEnabled="True"
+                                IsThreeState="False" />
+                            <Button
+                                x:Name="FinishInstalaltionBtn"
+                                Grid.Column="2"
+                                Width="300"
+                                Height="80"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Background="#40B052"
+                                BorderBrush="#40B052"
+                                Click="FinishInstalaltionBtn_Click"
+                                FontSize="20"
+                                Foreground="white"
+                                IsEnabled="True"
+                                Style="{StaticResource NormalButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center" Text="Installation beenden" />
+                                    <materialDesign:PackIcon
+                                        Width="30"
+                                        Height="30"
+                                        Margin="20,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Kind="CheckCircleOutline" />
+                                </StackPanel>
+                            </Button>
+
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </materialDesign:Card>
+
+    </Grid>
+</Window>

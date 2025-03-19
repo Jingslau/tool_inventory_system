@@ -1,0 +1,221 @@
+﻿<Window
+    x:Class="waerp_toolpilot.loginHandling.loginView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.main"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:svg="http://sharpVectors.net"
+    Title="Waerp Tool-Management Login"
+    Width="600"
+    Height="400"
+    AllowsTransparency="True"
+    Background="Transparent"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    ResizeMode="NoResize"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+    <Border
+        BorderBrush="Transparent"
+        BorderThickness="2"
+        CornerRadius="10">
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Rectangle
+                Grid.ColumnSpan="2"
+                RadiusX="10"
+                RadiusY="10">
+
+                <Rectangle.Fill>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <Image
+                                Grid.Row="0"
+                                Grid.ColumnSpan="2"
+                                Width="600"
+                                Height="400"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                RenderOptions.BitmapScalingMode="HighQuality"
+                                Source="\assets\images\tools\drillBg2.png" />
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Rectangle.Fill>
+
+            </Rectangle>
+
+            <Button
+                Grid.ColumnSpan="2"
+                Width="50px"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Click="CloseButton"
+                Content="{materialDesign:PackIcon Close}"
+                Foreground="#C5C5C5"
+                Style="{StaticResource MaterialDesignFlatLightButton}"
+                ToolTip="Applikation beenden" />
+
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center"    Margin="0 90 0 0">
+                    <Image
+                        Width="200"
+                        HorizontalAlignment="Left"
+                        RenderOptions.BitmapScalingMode="HighQuality"
+                        Source="\assets\images\logos\tooltrack-logo_white.png" />
+
+            
+                  
+                </StackPanel>
+
+                <StackPanel      Grid.Row="1"
+      Margin="20" VerticalAlignment="Bottom" Orientation="Vertical">
+                  
+                    <TextBlock
+      x:Name="CurrentVersion"
+
+      HorizontalAlignment="Center"
+      VerticalAlignment="Bottom"
+      FontSize="13" Margin="0 0 0 10"
+      FontWeight="Medium"
+      Foreground="#C5C5C5">
+      VERSION 0.3
+                    </TextBlock>
+                    <TextBlock
+  HorizontalAlignment="Center"
+  FontSize="10"   Foreground="#C5C5C5"
+  FontWeight="Light">
+Coded with   <materialDesign:PackIcon   Width="10" Height="8" Kind="Heart"/> in Ruhrpott
+                    </TextBlock>
+                 
+                </StackPanel>
+                <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Bottom"
+FontSize="4" Margin="7 0 0 4"   Foreground="#6D6D6D" FontWeight="ExtraLight" FontStyle="Italic">Foto von Daniel Smyth - dsukphotography.co.uk/home</TextBlock>
+
+
+            </Grid>
+            <Border
+                Grid.Column="1"
+               VerticalAlignment="Center"
+                
+                Margin="10,10,10,0"
+                HorizontalAlignment="Stretch"
+                Background="#E60F181D"
+                BorderThickness="2"
+                CornerRadius="10">
+                <Border.Effect>
+                    <DropShadowEffect
+                        BlurRadius="20"
+                        Direction="120"
+                        Opacity="0.8"
+                        ShadowDepth="5"
+                        Color="#686868" />
+                </Border.Effect>
+                <StackPanel Margin="15" VerticalAlignment="Center">
+                    <TextBlock
+                                               Margin="0 10 0 10"
+  HorizontalAlignment="Stretch"
+                TextAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        FontWeight="Light"
+                        Foreground="White">
+                        LOGIN
+                    </TextBlock>
+                    <TextBox
+                        x:Name="usernameP"
+                     HorizontalAlignment="Stretch"
+                        Margin="0 10 0 10"
+                        VerticalAlignment="Top"
+                        materialDesign:HintAssist.Hint="{DynamicResource loginUser}"
+                        AcceptsReturn="False"
+                        Background="#FFFFFF"
+                        Foreground="Black"
+                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                        Style="{StaticResource MaterialDesignFilledTextBox}"
+                        TextWrapping="Wrap" />
+
+                    <PasswordBox
+                        x:Name="PasswordInput"
+                      HorizontalAlignment="Stretch"
+                        Margin="0 10 0 10"
+                        
+                        VerticalAlignment="Top"
+                        materialDesign:HintAssist.Hint="{DynamicResource loginPassword}"
+                        Background="#FFFFFF"
+                        Foreground="Black"
+                        IsEnabled="{Binding ElementName=RevealPasswordFilledEnabled, Path=IsChecked}"
+                        Style="{StaticResource MaterialDesignFilledRevealPasswordBox}" />
+                    <Button
+                       HorizontalAlignment="Stretch"
+                        Margin="0 10 0 10"
+                        Click="loginHandler"
+                        Content="{DynamicResource loginButton}"
+                        IsDefault="True"
+                        Style="{StaticResource LoginButton}" />
+                    <TextBlock Foreground="#B0B0B0" FontSize="9" TextWrapping="Wrap" Margin="0 0 0 0">Bei Login Problemen wenden Sie sich bitte an Ihren Systemadministrator.</TextBlock>
+
+                </StackPanel>
+            </Border>
+            <StackPanel
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Orientation="Horizontal">
+                <Button
+                    x:Name="ShowSettingsBtn"
+                    Width="50px"
+                    Click="ShowSettingsBtn_Click"
+                    Content="{materialDesign:PackIcon Cog}"
+                    Foreground="#C5C5C5"
+                    Style="{StaticResource MaterialDesignFlatLightButton}"
+                    ToolTip="Verbindungseinstellungen anpassen" />
+                <!--<Button
+                    x:Name="SyncDatabase"
+                    Width="50px"
+                    Click="SyncDatabase_Click"
+                    Content="{materialDesign:PackIcon Sync}"
+                    Foreground="Gray"
+                    Style="{StaticResource MaterialDesignFlatLightButton}"
+                    ToolTip="" />-->
+
+            </StackPanel>
+            <materialDesign:Snackbar
+                x:Name="SnackbarError"
+                Grid.Column="3"
+                ActionButtonPlacement="SeparateLine"
+                Background="#FFB75348"
+                IsActive="False">
+                <materialDesign:SnackbarMessage Content="Benutzername oder Passwort sind falsch!" FontWeight="Bold" />
+            </materialDesign:Snackbar>
+            <materialDesign:Snackbar x:Name="SnackbarDeactivated"
+                                     Grid.Column="3"
+                                     ActionButtonPlacement="SeparateLine"
+                                     Background="#FFB75348"
+                                     IsActive="False">
+                <materialDesign:SnackbarMessage Content="Ungültiger Benutzer!"
+                                                FontWeight="Bold" />
+            </materialDesign:Snackbar>
+        </Grid>
+    </Border>
+</Window>

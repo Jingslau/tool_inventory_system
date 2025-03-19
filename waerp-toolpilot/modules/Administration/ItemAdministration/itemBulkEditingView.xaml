@@ -1,0 +1,224 @@
+﻿<UserControl
+    x:Class="waerp_toolpilot.modules.development_test"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.modules.Administration.ItemAdministration"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="1000"
+    d:DesignWidth="1086.625"
+    Background="#EEEEEE"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    Foreground="black"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="QuantityCell" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+        </Style>
+        <Style x:Key="SingleColDataGrid" TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+        </Style>
+        <Style x:Key="GridCellPad" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="15,10,0,0" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="LeftGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="10,10,10,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="8*" />
+
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical">
+            <Grid
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBox
+                    x:Name="searchBox"
+                    Grid.Column="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    materialDesign:HintAssist.Hint="{DynamicResource searchBarText}"
+                    AcceptsReturn="True"
+                    Cursor="Hand"
+                    IsEnabled="True"
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    TextChanged="searchBox_TextChanged"
+                    TextWrapping="Wrap" />
+                <Button
+                    x:Name="SaveChanges"
+                    Grid.Column="1"
+                    Margin="20,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    Click="SaveChanges_Click"
+                    IsEnabled="True"
+                    Style="{StaticResource NormalButton}">
+                    <TextBlock Text="Änderungen Speichern" />
+                </Button>
+                <Button
+                    x:Name="RevertChanges"
+                    Grid.Column="2"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    Click="RevertChanges_Click"
+                    IsEnabled="True"
+                    Style="{StaticResource SoftNormalButton}"
+                    ToolTip="Tabelle zurücksetzen">
+                    <materialDesign:PackIcon Kind="Refresh" />
+                </Button>
+
+
+            </Grid>
+            <TextBlock
+                FontSize="10"
+                FontWeight="ExtraLight"
+                TextWrapping="Wrap">
+                Art.Nr. = Artikelnummer - Bez. = Bezeichnung - MBM = Mindestbestellmenge - MLM = Mindestlagermenge - ⌀ = Artikeldurchmesser
+            </TextBlock>
+        </StackPanel>
+        <DataGrid
+            x:Name="itemGrid"
+            Grid.Row="1"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="0.5*"
+                    Binding="{Binding item_id}"
+                    Header="ID"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding item_name}"
+                    Header="Name" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding item_description}"
+                    Header="Bez. 1" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding item_description_2}"
+                    Header="Bez. 2" />
+
+                <DataGridTemplateColumn Header="⌀">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox PreviewTextInput="Float_PreviewTextInput" Text="{Binding item_diameter, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="MBM">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox PreviewTextInput="Integer_PreviewTextInput" Text="{Binding item_orderquant_min, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="MLM">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox PreviewTextInput="Integer_PreviewTextInput" Text="{Binding item_quantity_min, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!--  Define ComboBox columns for ItemFilter1 to ItemFilter5  -->
+                <DataGridTemplateColumn Width="*" Header="Filter 1">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox
+                                DisplayMemberPath="FilterName"
+                                ItemsSource="{Binding DataContext.FilterOptions1, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                SelectedValue="{Binding filter1_id, Mode=TwoWay}"
+                                SelectedValuePath="FilterId" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="*" Header="Filter 2">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox
+                                DisplayMemberPath="FilterName"
+                                ItemsSource="{Binding DataContext.FilterOptions2, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                SelectedValue="{Binding filter2_id, Mode=TwoWay}"
+                                SelectedValuePath="FilterId" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!--  Repeat for other Filter columns  -->
+                <DataGridTemplateColumn Width="*" Header="Filter 3">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox
+                                DisplayMemberPath="FilterName"
+                                ItemsSource="{Binding DataContext.FilterOptions3, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                SelectedValue="{Binding filter3_id, Mode=TwoWay}"
+                                SelectedValuePath="FilterId" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" Header="Filter 4">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox
+                                DisplayMemberPath="FilterName"
+                                ItemsSource="{Binding DataContext.FilterOptions4, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                SelectedValue="{Binding filter4_id, Mode=TwoWay}"
+                                SelectedValuePath="FilterId" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="*" Header="Filter 5">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox
+                                DisplayMemberPath="FilterName"
+                                ItemsSource="{Binding DataContext.FilterOptions5, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                SelectedValue="{Binding filter5_id, Mode=TwoWay}"
+                                SelectedValuePath="FilterId" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

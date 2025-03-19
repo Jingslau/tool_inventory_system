@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
+    <PublishUrlHistory>ftp://ftp.strato.de/waerp.toolpilot/|C:\Users\domin\OneDrive\Desktop\Local Test Publish Waerp Toolpilot\|C:\Users\domin\OneDrive\Desktop\wa\</PublishUrlHistory>
+    <InstallUrlHistory>https://waerp.software/download/waerp.toolpilot/</InstallUrlHistory>
+    <SupportUrlHistory>https://waerp.software/software/waerp.toolpilot/support/index.html</SupportUrlHistory>
+    <UpdateUrlHistory>https://waerp.software/download/waerp.toolpilot/</UpdateUrlHistory>
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory>https://waerp.software/software/waerp.toolpilot/error/index.html</ErrorReportUrlHistory>
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,249 @@
+﻿<UserControl
+    x:Class="waerp_toolpilot.application.Administration.CustomerAdministration.CustomerAdministrationView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.application.Administration.CustomerAdministration"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="1000"
+    d:DesignWidth="1086.625"
+    Background="#EFEFEF"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    Foreground="black"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="QuantityCell" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,0,0,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="SingleColDataGrid" TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+        </Style>
+        <Style x:Key="GridCellPad" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="15,0,0,0" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="LeftGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </UserControl.Resources>
+    <Grid Style="{StaticResource GridBackgroundMainFrame}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
+        <Grid
+            Grid.Row="0"
+            Margin="50,0,50,0"
+            VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                Style="{StaticResource PageHeadInstructionTextBlock}"
+                TextAlignment="Left">
+                Um einen Kunden zu bearbeiten oder löschen, klicken Sie auf den jeweiligen Button in der Tabelle.<LineBreak />
+                Gelöschte Kunden können nicht wiederhergestellt werden!</TextBlock>
+            <Button
+                x:Name="AddCustomerBtn"
+                Grid.Column="1"
+                Width="170"
+                HorizontalAlignment="Right"
+                Click="AddCustomerBtn_Click"
+                Content="Kunden anlegen"
+                Style="{StaticResource NormalButton}" />
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="7*" />
+            </Grid.RowDefinitions>
+            <TextBox
+                x:Name="searchBox"
+                Grid.Row="0"
+                Margin="50,0,50,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                materialDesign:HintAssist.Hint="Suche"
+                AcceptsReturn="True"
+                Cursor="Hand"
+                IsEnabled="True"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                TextChanged="searchBox_TextChanged"
+                TextWrapping="NoWrap" />
+            <DataGrid
+                x:Name="CustomerDataItems"
+                Grid.Row="1"
+                Margin="50,20,50,20"
+                ItemsSource="{Binding Path=itemData}"
+                SelectionChanged="CustomerDataItems_SelectionChanged">
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="MinHeight" Value="100" />
+                        <Setter Property="MaxHeight" Value="100" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#00F4E6" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+
+                        </Style.Triggers>
+
+                    </Style>
+
+                </DataGrid.CellStyle>
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="2*"
+                        Binding="{Binding Path=customer_company_id}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="Kundennummer"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="2*"
+                        Binding="{Binding Path=customer_name}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="Firma"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="2*"
+                        Binding="{Binding Path=customer_adress}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="Straße"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=customer_postcode}"
+                        ElementStyle="{StaticResource QuantityCell}"
+                        Header="PLZ"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=customer_city}"
+                        ElementStyle="{StaticResource QuantityCell}"
+                        Header="Stadt"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=customer_country}"
+                        ElementStyle="{StaticResource QuantityCell}"
+                        Header="Ländercode"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="2*"
+                        Binding="{Binding Path=customer_website}"
+                        ElementStyle="{StaticResource QuantityCell}"
+                        Header="Webseite"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="2*"
+                        Binding="{Binding Path=customer_phone}"
+                        ElementStyle="{StaticResource QuantityCell}"
+                        Header="Telefon"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="2*"
+                        Binding="{Binding Path=customer_mail}"
+                        ElementStyle="{StaticResource QuantityCell}"
+                        Header="E-Mail"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="2*"
+                        Binding="{Binding Path=customer_contact}"
+                        ElementStyle="{StaticResource QuantityCell}"
+                        Header="Ansprechpartner"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+
+
+                    <DataGridTemplateColumn
+                        Width="*"
+                        Header="Bearbeiten"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    x:Name="EditCustomer"
+                                    Width="40"
+                                    Height="40"
+                                    Background="#4265A9"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0"
+                                    Click="EditCustomer_Click"
+                                    Foreground="White"
+                                    Style="{StaticResource MaterialDesignFloatingActionLightButton}">
+                                    <materialDesign:PackIcon Kind="PencilOutline" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="*"
+                        Header="Löschen"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    x:Name="DeleteCustomer"
+                                    Width="40"
+                                    Height="40"
+                                    Background="#A94C42"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0"
+                                    Click="DeleteCustomer_Click"
+                                    Foreground="White"
+                                    Style="{StaticResource MaterialDesignFloatingActionLightButton}">
+                                    <materialDesign:PackIcon Kind="DeleteOutline" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+    </Grid>
+</UserControl>
+

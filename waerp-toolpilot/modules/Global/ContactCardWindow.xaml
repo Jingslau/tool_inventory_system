@@ -1,0 +1,106 @@
+﻿<Window
+    x:Class="waerp_toolpilot.application.Global.ContactCardWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.application.Global"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="RentSelectedItemView"
+    Width="500"
+    Height="250"
+    AllowsTransparency="True"
+    Background="Transparent"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Grid>
+        <Border     MouseLeftButtonDown="Border_MouseLeftButtonDown"
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="2"
+            Style="{StaticResource BorderDialog}">
+            <Rectangle Margin="0" Style="{StaticResource RectangleDialog}" />
+        </Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+
+                <RowDefinition Height="2*" />
+
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Margin="20"
+                VerticalAlignment="top"
+                FontSize="20"
+                FontWeight="DemiBold"
+                Text="{DynamicResource contactCardTitle}"
+                TextAlignment="Left"
+                TextWrapping="Wrap" />
+            <StackPanel
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="20,0,20,0"
+                Orientation="Vertical">
+                <TextBlock
+                    x:Name="CompanyName"
+                    Margin="0,0,0,10"
+                    FontSize="18"
+                    FontWeight="DemiBold"
+                    Text="Martin Isak Zerspanungstechnik"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    x:Name="CompanyAdress"
+                    FontSize="14"
+                    Text="Gleiwitzer Straße 8" />
+                <TextBlock
+                    x:Name="CompanyCity"
+                    FontSize="14"
+                    Text="Recklinghausen" />
+                <TextBlock
+                    x:Name="CompanyPostcode"
+                    FontSize="14"
+                    Text="45665" />
+                <TextBlock
+                    x:Name="CompanyCountry"
+                    FontSize="14"
+                    Text="DE" />
+            </StackPanel>
+            <StackPanel
+                Grid.Row="1"
+                Grid.Column="1"
+                Orientation="Vertical">
+                <TextBlock
+                    Margin="0,0,0,10"
+                    FontSize="14"
+                    Text="" />
+                <TextBlock
+                    x:Name="CompanyWebsite"
+                    FontSize="14"
+                    Text="www.werkzeuge-isak.de" />
+                <TextBlock
+                    x:Name="CompanyMail"
+                    FontSize="14"
+                    Text="02361 27642" />
+                <TextBlock
+                    x:Name="CompanyPhone"
+                    FontSize="14"
+                    Text="info@werkzeuge-isak.de" />
+            </StackPanel>
+            <Button
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Width="200"
+                Click="Button_Click"
+                Content="{DynamicResource closeButton}"
+                Style="{StaticResource CancleButton}" />
+        </Grid>
+
+
+    </Grid>
+</Window>

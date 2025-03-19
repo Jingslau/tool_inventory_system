@@ -1,0 +1,862 @@
+﻿<Page
+    x:Class="waerp_toolpilot.main.mainDashboard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.main"
+    xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="mainDashboard"
+    d:DesignHeight="600"
+    d:DesignWidth="1086.625"
+    Background="#9E9E9E"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    Foreground="black"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Style x:Key="QuantityCell" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="SingleColDataGrid" TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Margin" Value="10,0,0,0" />
+        </Style>
+        <Style x:Key="GridCellPad" TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+
+            <Setter Property="Margin" Value="10,0,0,0" />
+        </Style>
+        <Style x:Key="LeftGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+
+
+    </Page.Resources>
+    <materialDesign:Card Background="#9E9E9E">
+        <!--<TabControl
+            HorizontalAlignment="Stretch"
+            materialDesign:ColorZoneAssist.Mode="PrimaryLight"
+            Style="{StaticResource MaterialDesignFilledTabControl}">-->
+        <!--<TabItem Header="{DynamicResource dashboardTabItem1}">-->
+        <Grid Style="{StaticResource GridBackgroundMainFrame}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="20,20,0,0"
+                Orientation="Vertical">
+                <TextBlock
+                    Grid.Row="0"
+                    FontSize="20"
+                    Text="{DynamicResource dashboardTitleWelcome}" />
+                <TextBlock
+                    x:Name="fullname"
+                    Grid.Row="1"
+                    FontSize="20"
+                    FontWeight="Light"
+                    Text="{Binding Fullname}" />
+            </StackPanel>
+
+
+            <!--<lvc:PieChart
+                        x:Name="StockOverviewChart"
+                        Grid.Row="1"
+                        DataTooltip="{x:Null}"
+                        Hoverable="False"
+                        LegendLocation="Bottom">
+                        <lvc:PieChart.Series>
+                            <lvc:PieSeries
+                                Title="Entnommen"
+                                DataLabels="True"
+                                LabelPoint="{Binding PointLabel}"
+                                Values="3" />
+                            <lvc:PieSeries
+                                Title="Eingelagert"
+                                DataLabels="True"
+                                Foreground="Black"
+                                LabelPoint="{Binding PointLabel}"
+                                Values="4" />
+                            <lvc:PieSeries
+                                Title="Verschrottet"
+                                DataLabels="True"
+                                Foreground="Black"
+                                LabelPoint="{Binding PointLabel}"
+                                Values="4" />
+                        </lvc:PieChart.Series>
+                    </lvc:PieChart>-->
+
+            <StackPanel
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                Margin="0,20,10,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Orientation="Horizontal">
+                <Button
+                    x:Name="changeView"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="0,0,20,0"
+                    HorizontalAlignment="Right"
+                    Click="changeView_Click"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+                    <materialDesign:PackIcon
+                        Width="20"
+                        Height="20"
+                        Kind="ViewDashboard" />
+                </Button>
+                <Border
+                    Width="190"
+                    Height="70"
+                    Margin="0,0,0,0"
+                    Background="#FFFFFF"
+                    BorderBrush="#B8B8B8"
+                    BorderThickness="2"
+                    CornerRadius="10"
+                    Visibility="Visible">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Margin="0,0,10,0">
+                            <TextBlock
+                                x:Name="currentRents"
+                                HorizontalAlignment="Right"
+                                FontSize="30"
+                                Foreground="#34914E"
+                                Text="0" />
+                            <TextBlock HorizontalAlignment="Right" Text="Aktuell entnommene Artikel" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Border
+                    Width="190"
+                    Height="70"
+                    Margin="10,0,0,0"
+                    Background="#FFFFFF"
+                    BorderBrush="#B8B8B8"
+                    BorderThickness="2"
+                    CornerRadius="10"
+                    Visibility="Visible">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Margin="0,0,10,0">
+                            <TextBlock
+                                x:Name="currentOrders"
+                                HorizontalAlignment="Right"
+                                FontSize="30"
+                                Foreground="#34914E"
+                                Text="0" />
+                            <TextBlock HorizontalAlignment="Right" Text="Aktuell bestellte Artikel" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Border
+                    Width="190"
+                    Height="70"
+                    Margin="0,0,0,0"
+                    Background="#F4F4F4"
+                    BorderBrush="#B8B8B8"
+                    BorderThickness="2"
+                    CornerRadius="10"
+                    Visibility="Collapsed">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Margin="0,0,0,0">
+                            <TextBlock
+                                x:Name="nextCheckUpDate"
+                                HorizontalAlignment="Right"
+                                FontSize="30"
+                                Foreground="#34914E"
+                                Text="0" />
+                            <TextBlock HorizontalAlignment="Right" Text="{DynamicResource dashboardAlert1}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Border
+                    Width="190"
+                    Height="70"
+                    Background="#F4F4F4"
+                    BorderBrush="#B8B8B8"
+                    BorderThickness="2"
+                    CornerRadius="10"
+                    Visibility="Collapsed">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Margin="0,0,10,0">
+                            <TextBlock
+                                HorizontalAlignment="Right"
+                                FontSize="30"
+                                Foreground="#34914E"
+                                Text="0" />
+                            <TextBlock HorizontalAlignment="Right" Text="{DynamicResource dashboardAlert2}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+
+            <Button
+                Grid.Row="0"
+                Grid.Column="1"
+                Width="50"
+                Height="50"
+                Margin="0,0,30,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="OpenBarcodeScan_Click"
+                Style="{StaticResource RoundButtons}"
+                ToolTip="Artikelsuche/scannen"
+                Visibility="Hidden">
+                <materialDesign:PackIcon
+                    Width="25"
+                    Height="25"
+                    Kind="DatabaseSearch" />
+            </Button>
+            <Border
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="10,10,10,10"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="#FFFFFF"
+                BorderBrush="#B8B8B8"
+                BorderThickness="2"
+                CornerRadius="10">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.5*" />
+                        <RowDefinition Height="4*" />
+
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Grid.Row="0"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Foreground="#333333"
+                        TextWrapping="Wrap">
+                        Aktivitäten (aktuelle Woche)
+                    </TextBlock>
+                    <lvc:CartesianChart
+                        x:Name="mainGraph"
+                        Grid.Row="1"
+                        LegendLocation="Right"
+                        Series="{Binding OverviewSeries}">
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Artikel" LabelFormatter="{Binding YFormatter}" />
+                        </lvc:CartesianChart.AxisY>
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="Tag" Labels="{Binding XLabels}" />
+                        </lvc:CartesianChart.AxisX>
+                    </lvc:CartesianChart>
+                </Grid>
+            </Border>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+
+                </Grid.ColumnDefinitions>
+                <Border
+                    Grid.Column="0"
+                    Margin="10,10,10,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="#FFFFFF"
+                    BorderBrush="#B8B8B8"
+                    BorderThickness="2"
+                    CornerRadius="10">
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="4*" />
+
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Grid.Row="0"
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Foreground="#333333"
+                            TextWrapping="Wrap">
+                            Artikelstatistik (aktuelles Quartal)
+                        </TextBlock>
+                        <lvc:PieChart
+                            x:Name="Statistic1"
+                            Grid.Row="1"
+                            DataTooltip="{x:Null}"
+                            Hoverable="False"
+                            LegendLocation="Bottom" />
+                    </Grid>
+                </Border>
+                <Border
+                    Grid.Column="1"
+                    Margin="10,10,10,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="#FFFFFF"
+                    BorderBrush="#B8B8B8"
+                    BorderThickness="2"
+                    CornerRadius="10">
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="4*" />
+
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Grid.Row="0"
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Foreground="#333333"
+                            TextWrapping="Wrap">
+                            Lieferantenstatistik (Insgesamt)
+                        </TextBlock>
+                        <lvc:PieChart
+                            x:Name="Statistic2"
+                            Grid.Row="1"
+                            DataTooltip="{x:Null}"
+                            Hoverable="False"
+                            LegendLocation="Bottom" />
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Border
+                Grid.Row="2"
+                Grid.Column="0"
+                Margin="10,10,10,10"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="#FFFFFF"
+                BorderBrush="#B8B8B8"
+                BorderThickness="2"
+                CornerRadius="10">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="4*" />
+
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Grid.Row="0"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Foreground="#333333"
+                        TextWrapping="Wrap">
+                        Getätigte Bestellungen (aktuelle Woche)
+                    </TextBlock>
+                    <lvc:CartesianChart
+                        x:Name="vendorOrderGraph"
+                        Grid.Row="1"
+                        LegendLocation="Right"
+                        Series="{Binding OverviewSeries}">
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Bestellte Artikel" LabelFormatter="{Binding YFormatter}" />
+                        </lvc:CartesianChart.AxisY>
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="Tag" Labels="{Binding XLabels}" />
+                        </lvc:CartesianChart.AxisX>
+                    </lvc:CartesianChart>
+                </Grid>
+            </Border>
+            <Border
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="10,10,10,10"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="#FFFFFF"
+                BorderBrush="#B8B8B8"
+                BorderThickness="2"
+                CornerRadius="10">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="4*" />
+
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Foreground="#333333"
+                        TextWrapping="Wrap">
+                        Maschinenübersicht
+                    </TextBlock>
+                    <DataGrid
+                        x:Name="MachineDataItems"
+                        Grid.Row="1"
+                        Background="#FFFFFF"
+                        ItemsSource="{Binding Path=machineData}">
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="BorderThickness" Value="0" />
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                <Setter Property="FontSize" Value="14" />
+                                <Setter Property="MinHeight" Value="30" />
+                                <Setter Property="MaxHeight" Value="30" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#F4F4F4" />
+                                        <Setter Property="Foreground" Value="Black" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Path=name}"
+                                ElementStyle="{StaticResource GridCellPad}"
+                                Header="{DynamicResource machineNameHeader}"
+                                HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Path=machine_group_index}"
+                                ElementStyle="{StaticResource QuantityCell}"
+                                Header="Gruppenindex"
+                                HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Path=quantity}"
+                                ElementStyle="{StaticResource QuantityCell}"
+                                Header="{DynamicResource activeToolsHeader}"
+                                HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Path=last_employee}"
+                                ElementStyle="{StaticResource QuantityCell}"
+                                Header="letzter Mitarbeiter"
+                                HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                                IsReadOnly="True" />
+
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+
+            <!--<Button
+                x:Name="ReturnSelectedItemBtn"
+                Grid.Row="0"
+                Grid.Column="1"
+                Height="30"
+                MaxWidth="200"
+                Margin="10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                materialDesign:ButtonAssist.CornerRadius="5"
+                Click="ReturnSelectedItemBtn_Click"
+                Style="{StaticResource NormalButton}">
+                <StackPanel
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <materialDesign:PackIcon
+                        Margin="0,0,5,0"
+                        VerticalAlignment="Center"
+                        Kind="TrayArrowDown" />
+                    <TextBlock Text="{DynamicResource dashboardButtonReturn}" TextWrapping="Wrap" />
+                </StackPanel>
+            </Button>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="20,0,0,10"
+                VerticalAlignment="Bottom"
+                FontSize="18"
+                FontWeight="Normal"
+                Text="{DynamicResource dashboardTableTitle}" />-->
+
+
+
+
+            <!--<DataGrid
+                x:Name="dashboardRents"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2"
+                Margin="20,0,10,20"
+                ItemsSource="{Binding Path=dashboardRents}"
+                SelectionChanged="dataGridCustomers_SelectionChanged">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Click="CopyItemIdent" Header="Artikelnummer kopieren" />
+
+                        <MenuItem Click="CopyDescription" Header="Beschreibung kopieren" />
+
+                        <MenuItem Click="CopyAll" Header="Zeile kopieren" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="MinHeight" Value="50" />
+                        <Setter Property="MaxHeight" Value="50" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#00F4E6" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=item_ident}"
+                        ElementStyle="{StaticResource SingleColDataGrid}"
+                        Header="{DynamicResource itemIdent}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="2*"
+                        Binding="{Binding Path=item_description}"
+                        ElementStyle="{StaticResource SingleColDataGrid}"
+                        Header="{DynamicResource itemDescription1Hint}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="2*"
+                        Binding="{Binding Path=user}"
+                        ElementStyle="{StaticResource SingleColDataGrid}"
+                        Header="{DynamicResource employeeNameHeader}"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=item_quantity_total}"
+                        ElementStyle="{StaticResource QuantityCell}"
+                        Header="{DynamicResource singleQuantityHeader}"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+                    <DataGridTemplateColumn
+                        Width="*"
+                        Header="{DynamicResource isUsedHeader}"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <materialDesign:PackIcon
+                                    Width="30"
+                                    Height="30"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                                    <materialDesign:PackIcon.Style>
+                                        <Style TargetType="materialDesign:PackIcon">
+                                            <Setter Property="Kind" Value="Check" />
+                                            <Setter Property="Foreground" Value="#8BC34A" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding item_used}" Value="0">
+                                                    <Setter Property="Kind" Value="Close" />
+                                                    <Setter Property="Foreground" Value="Red" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </materialDesign:PackIcon.Style>
+                                </materialDesign:PackIcon>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=item_image_path}"
+                        ElementStyle="{StaticResource SingleColDataGrid}"
+                        Header="{DynamicResource datetimeHeader}"
+                        IsReadOnly="True" />
+                </DataGrid.Columns>
+            </DataGrid>-->
+        </Grid>
+
+        <!--</TabItem>-->
+        <!--<TabItem Header="{DynamicResource dashboardTabItem2}">
+                <Grid Style="{StaticResource GridBackgroundMainFrame}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="5*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel
+                        Grid.Row="0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal">
+                        <TextBox
+                            x:Name="searchBox"
+                            MinWidth="300"
+                            MaxWidth="500"
+                            Margin="20,0,10,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            materialDesign:HintAssist.Hint="Suche"
+                            AcceptsReturn="True"
+                            Cursor="Hand"
+                            IsEnabled="True"
+                            Style="{StaticResource MaterialDesignFilledTextBox}"
+                            TextChanged="searchBox_TextChanged"
+                            TextWrapping="NoWrap" />
+
+                        <Menu
+                            Width="50"
+                            VerticalAlignment="Center"
+                            materialDesign:MenuAssist.TopLevelMenuItemHeight="30"
+                            Cursor="Hand">
+        -->
+        <!--<MenuItem
+                                Height="40"
+                                Background="#E6E6E6"
+                                Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                Header="In Color"
+                                Icon="{materialDesign:PackIcon Kind=Filter}">
+                                <MenuItem
+                                    x:Name="Settings"
+                                    Cursor="Hand"
+                                    Header="{DynamicResource mainWindowButton13}"
+                                    Icon="{materialDesign:PackIcon Kind=Cog}" />
+                                <MenuItem
+                                    Cursor="Hand"
+                                    Header="{DynamicResource mainWindowButton12}"
+                                    Icon="{materialDesign:PackIcon Kind=Account}"
+                                    IsEnabled="True" />
+                                <MenuItem
+                                    x:Name="LogoutTop"
+                                    Cursor="Hand"
+                                    Header="{DynamicResource mainWindowButton11}"
+                                    Icon="{materialDesign:PackIcon Kind=LogoutVariant}" />
+                                <MenuItem
+                                    x:Name="ShutdownTop"
+                                    Cursor="Hand"
+                                    Header="{DynamicResource mainWindowButton14}"
+                                    Icon="{materialDesign:PackIcon Kind=Power}" />
+                            </MenuItem>-->
+        <!--
+                        </Menu>
+
+
+                    </StackPanel>
+                    <StackPanel
+                        Grid.Row="0"
+                        Margin="0,0,20,0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+
+                        <Button
+                            x:Name="TakeOutME"
+                            Grid.Column="1"
+                            Width="170"
+                            Margin="0,0,20,0"
+                            HorizontalAlignment="Right"
+                            Content="{DynamicResource measureEquipBtn3}"
+                            Style="{StaticResource NormalButton}" />
+                        <Button
+                            x:Name="ReturnME"
+                            Grid.Column="1"
+                            Width="170"
+                            Margin="0,0,20,0"
+                            HorizontalAlignment="Right"
+                            Content="{DynamicResource measureEquipBtn4}"
+                            Style="{StaticResource NormalButton}" />
+
+        -->
+        <!--<Button
+                            x:Name="addCheckUp"
+                            Grid.Column="1"
+                            Width="170"
+                            Margin="0,0,20,0"
+                            HorizontalAlignment="Right"
+                            Click="addCheckUp_Click"
+                            Content="{DynamicResource measureEquipBtn1}"
+                            Style="{StaticResource NormalButton}" />-->
+        <!--<Button
+                            x:Name="confirmCheckUp"
+                            Grid.Column="1"
+                            Width="170"
+                            Margin="0,0,20,0"
+                            HorizontalAlignment="Right"
+                            Click="confirmCheckUp_Click"
+                            Content="{DynamicResource measureEquipBtn2}"
+                            Style="{StaticResource NormalButton}" />-->
+        <!--<Button
+                            x:Name="checkUpHistory"
+                            Grid.Column="1"
+                            Width="50"
+                            HorizontalAlignment="Right"
+                            Click="checkUpHistory_Click"
+                            Style="{StaticResource NormalButton}">
+                            <materialDesign:PackIcon Kind="History" />
+                        </Button>-->
+        <!--
+
+                        <Button
+                            x:Name="MeasureAdmin"
+                            Width="170"
+                            Style="{StaticResource NormalButton}">
+                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Menu
+                                    Grid.Column="0"
+                                    Width="170"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    materialDesign:MenuAssist.TopLevelMenuItemHeight="25"
+                                    Background="#E0E0E0"
+                                    Cursor="Hand">
+                                    <MenuItem Width="170">
+                                        <MenuItem
+                                            x:Name="History2"
+                                            Click="checkUpHistory_Click"
+                                            Cursor="Hand"
+                                            Header="Historie"
+                                            Icon="{materialDesign:PackIcon Kind=History}" />
+                                        <MenuItem
+                                            Click="confirmCheckUp_Click"
+                                            Cursor="Hand"
+                                            Header="{DynamicResource measureEquipBtn2}"
+                                            IsEnabled="True" />
+                                        <MenuItem
+                                            x:Name="addCheckUp"
+                                            Click="addCheckUp_Click"
+                                            Cursor="Hand"
+                                            Header="{DynamicResource measureEquipBtn1}" />
+
+                                    </MenuItem>
+                                </Menu>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                                    Prüfung
+                                </TextBlock>
+                            </Grid>
+                        </Button>
+                    </StackPanel>
+
+                    <DataGrid
+                        x:Name="measureItemsData"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        Margin="20,0,20,20"
+                        ItemsSource="{Binding Path=dashboardRents}"
+                        SelectionChanged="measureItemsData_SelectionChanged">
+
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="BorderThickness" Value="0" />
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                <Setter Property="FontSize" Value="14" />
+                                <Setter Property="MinHeight" Value="50" />
+                                <Setter Property="MaxHeight" Value="50" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#00F4E6" />
+                                        <Setter Property="Foreground" Value="Black" />
+                                    </Trigger>
+
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Path=measuring_equip_serialnumber}"
+                                ElementStyle="{StaticResource SingleColDataGrid}"
+                                Header="{DynamicResource measureEquipDataGridHeader1}"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Path=measuring_equip_name}"
+                                ElementStyle="{StaticResource SingleColDataGrid}"
+                                Header="{DynamicResource measureEquipDataGridHeader2}"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Path=measuring_equip_vendor}"
+                                ElementStyle="{StaticResource SingleColDataGrid}"
+                                Header="{DynamicResource measureEquipDataGridHeader3}"
+                                IsReadOnly="True" />
+        -->
+        <!--<DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Path=measuring_equip_auditor}"
+                                ElementStyle="{StaticResource QuantityCell}"
+                                Header="{DynamicResource measureEquipDataGridHeader4}"
+                                HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                                IsReadOnly="True" />-->
+        <!--
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Path=lastCheckUp}"
+                                ElementStyle="{StaticResource QuantityCell}"
+                                Header="{DynamicResource measureEquipDataGridHeader5}"
+                                HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Path=nextCheckUp}"
+                                ElementStyle="{StaticResource QuantityCell}"
+                                Header="{DynamicResource measureEquipDataGridHeader6}"
+                                HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Path=currentLocation}"
+                                ElementStyle="{StaticResource QuantityCell}"
+                                Header="{DynamicResource locationIdentHeader}"
+                                HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                                IsReadOnly="True" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>-->
+        <!--<TabItem Header="{DynamicResource dashboardTabItem3}">
+                <TextBlock Margin="8" Text="PrimaryLight Tab 2" />
+            </TabItem>-->
+        <!--</TabControl>-->
+    </materialDesign:Card>
+
+
+</Page>

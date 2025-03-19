@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="waerp_toolpilot.config.SettingsStore" GeneratedClassName="CompanySettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CompanyName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Musterfirma GmbH Bochum</Value>
+    </Setting>
+    <Setting Name="CompanyNameShort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MusterFirma</Value>
+    </Setting>
+    <Setting Name="CompanyMail" Type="System.String" Scope="User">
+      <Value Profile="(Default)">muster@muster.de</Value>
+    </Setting>
+    <Setting Name="CompanyPhone" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0234 00000098</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

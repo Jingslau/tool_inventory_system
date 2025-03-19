@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="waerp_toolpilot.config.SettingsStore" GeneratedClassName="pdfDocument">
+  <Profiles />
+  <Settings>
+    <Setting Name="printSpaceLeft" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="printSpaceRight" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="printSpaceTop" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="printSpaceBottom" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="stationeryPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\\Users\\domin\\Source\\Workspaces\\waerp.inventorysystem\\waerp-management\\assets\\images\\app\\Druckdatei_wærp_Briefpapier.pdf</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

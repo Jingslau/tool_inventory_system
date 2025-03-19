@@ -1,0 +1,93 @@
+﻿<Window
+    x:Class="waerp_toolpilot.errorHandling.BufferLoader_Error"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.errorHandling"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="ErrorWindow"
+    Width="600"
+    Height="300"
+    AllowsTransparency="True"
+    Background="Transparent"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Border     
+        x:Name="ErrorWindowBorder"
+        Background="#E6E6E6"
+        CornerRadius="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border     
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Height="10"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Background="#7761FE"
+                CornerRadius="10 10 0 0" />
+
+            <Grid Grid.Column="1" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.5*" />
+                </Grid.RowDefinitions>
+                <materialDesign:Card
+                    Width="120"
+                    Height="120"
+                    Background="#EFEFEF"
+                    UniformCornerRadius="120">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image
+                            Grid.Row="0"
+                            Width="50"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            RenderOptions.BitmapScalingMode="HighQuality"
+                            Source="\assets\images\logos\waerp-icon_white.png" />
+                        <ProgressBar
+                            x:Name="ProgressBarCircle"
+                            Grid.Row="0"
+                            Width="50"
+                            Height="50"
+                            VerticalAlignment="Center"
+                            Foreground="#6049C1"
+                            IsIndeterminate="True"
+                            Style="{StaticResource MaterialDesignCircularProgressBar}"
+                            Value="0">
+                            <ProgressBar.LayoutTransform>
+                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="2" ScaleY="2" />
+                            </ProgressBar.LayoutTransform>
+                        </ProgressBar>
+                    </Grid>
+
+                </materialDesign:Card>
+
+                <TextBlock
+                    x:Name="MessageTitle"
+                    Grid.Row="1"
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    FontSize="20"
+                    FontWeight="Regular"
+                    Foreground="Black"
+                    Text="Bitte warten Sie bis der Prozess abgeschlossen wird."
+                    TextWrapping="Wrap" />
+
+
+            </Grid>
+
+        </Grid>
+
+    </Border>
+
+</Window>

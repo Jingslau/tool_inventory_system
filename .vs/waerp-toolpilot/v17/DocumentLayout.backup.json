@@ -1,0 +1,55 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Projekte\\01_Toolpilot\\toolpilot_vs\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|waerp-toolpilot||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2013D4F7-A191-4B63-86DB-7289B7117311}|waerp-toolpilot\\waerp-toolpilot.csproj|E:\\Projekte\\01_Toolpilot\\toolpilot_vs\\waerp-toolpilot\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2013D4F7-A191-4B63-86DB-7289B7117311}|waerp-toolpilot\\waerp-toolpilot.csproj|solutionrelative:waerp-toolpilot\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 2284,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "waerp-toolpilot",
+              "DocumentMoniker": "E:\\Projekte\\01_Toolpilot\\toolpilot_vs\\waerp-toolpilot\\waerp-toolpilot.csproj",
+              "RelativeDocumentMoniker": "waerp-toolpilot\\waerp-toolpilot.csproj",
+              "ToolTip": "E:\\Projekte\\01_Toolpilot\\toolpilot_vs\\waerp-toolpilot\\waerp-toolpilot.csproj",
+              "RelativeToolTip": "waerp-toolpilot\\waerp-toolpilot.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-01-16T11:14:56.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "E:\\Projekte\\01_Toolpilot\\toolpilot_vs\\waerp-toolpilot\\App.xaml.cs",
+              "RelativeDocumentMoniker": "waerp-toolpilot\\App.xaml.cs",
+              "ToolTip": "E:\\Projekte\\01_Toolpilot\\toolpilot_vs\\waerp-toolpilot\\App.xaml.cs",
+              "RelativeToolTip": "waerp-toolpilot\\App.xaml.cs",
+              "ViewState": "AgIAALkAAAAAAAAAAAAswOMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-16T11:10:27.962Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

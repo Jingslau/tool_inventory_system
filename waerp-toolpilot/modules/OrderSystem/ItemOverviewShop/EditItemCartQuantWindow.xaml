@@ -1,0 +1,105 @@
+﻿<Window
+    x:Class="waerp_toolpilot.application.OrderSystem.ItemOverviewShop.EditItemCartQuantWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.application.OrderSystem.ItemOverviewShop"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="RentSelectedItemView"
+    Width="450"
+    Height="300"
+    AllowsTransparency="True"
+    Background="Transparent"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Grid>
+        <Border     MouseLeftButtonDown="Border_MouseLeftButtonDown"
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="2"
+            BorderBrush="#444444"
+            BorderThickness="8"
+            CornerRadius="10">
+            <Rectangle Margin="0" Fill="#EEEEEE" />
+        </Border>
+        <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+            <TextBlock
+                Margin="10"
+                VerticalAlignment="Center"
+                FontSize="24"
+                FontWeight="DemiBold"
+                Text="{DynamicResource editOrderText}"
+                TextAlignment="Center"
+                TextWrapping="Wrap" />
+            <StackPanel
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <Button
+                    Click="MinusQuantity_Click"
+                    Style="{StaticResource RoundButtons}"
+                    ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                    <materialDesign:PackIcon Kind="Minus" />
+                </Button>
+                <TextBox
+                    x:Name="QuantityInput"
+                    Width="200"
+                    MaxWidth="200"
+                    Margin="20,0,20,0"
+                    VerticalAlignment="Center"
+                    materialDesign:HintAssist.Hint="{DynamicResource singleQuantityHeader}"
+                    AcceptsReturn="True"
+                    IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                    PreviewTextInput="NumberValidationTextBox"
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    Text="1"
+                    TextWrapping="Wrap" />
+                <StackPanel Orientation="Horizontal">
+                    <Button
+                        Margin="0,0,20,0"
+                        Click="PlusQuantity_Click"
+                        Style="{StaticResource RoundButtons}"
+                        ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                        <materialDesign:PackIcon Kind="Plus" />
+                    </Button>
+                    <Button
+                        Click="QuantityNumInput_Click"
+                        Content="{materialDesign:PackIcon Keyboard}"
+                        Style="{StaticResource RoundButtons}"
+                        ToolTip="Icon" />
+
+                </StackPanel>
+
+            </StackPanel>
+            <StackPanel
+                Grid.Row="1"
+                Margin="10"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+
+
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Width="200"
+                    Margin="0,30,10,0"
+                    Click="CloseCurrentDialog"
+                    Content="{DynamicResource cancleButton}"
+                    Style="{StaticResource CancleButton}" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Width="200"
+                    Margin="10,30,0,0"
+                    Click="PlaceOrder_Click"
+                    Content="{DynamicResource saveButton}"
+                    Style="{StaticResource NormalButton}" />
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>

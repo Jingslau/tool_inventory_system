@@ -1,0 +1,247 @@
+﻿<Window
+    x:Class="waerp_toolpilot.config.AccountSettingsView.AccountSettingsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.config.AccountSettingsView"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rules="clr-namespace:waerp_toolpilot.errorHandling"
+    Width="1100"
+    Height="700"
+    AllowsTransparency="True"
+    Background="Transparent"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    ResizeMode="NoResize"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="5*" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border
+            Grid.RowSpan="2"
+            BorderBrush="#7761FE"
+            BorderThickness="10"
+            CornerRadius="10"
+            MouseLeftButtonDown="Border_MouseLeftButtonDown">
+            <Rectangle
+                Fill="#EFEFEF"
+                RadiusX="5"
+                RadiusY="5" />
+        </Border>
+        <Grid Margin="10,10,10,0" Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Rectangle
+                Grid.ColumnSpan="2"
+                Fill="#222222"
+                RadiusX="5"
+                RadiusY="5" />
+            <Rectangle
+                Grid.ColumnSpan="2"
+                Margin="0,10,0,0"
+                Fill="#222222" />
+            <TextBlock
+                Grid.Column="0"
+                Margin="20,0,0,0"
+                VerticalAlignment="Center"
+                FontSize="18"
+                FontWeight="DemiBold"
+                Foreground="White"
+                Text="{DynamicResource accountSettings1}" />
+            <StackPanel
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <Button
+                    x:Name="CloseAccountSettings"
+                    Grid.Column="1"
+                    Width="100"
+                    Margin="0,0,20,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Click="CloseAccountSettings_Click"
+                    Content="{DynamicResource closeButton}"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}" />
+                <!--<Button
+                    Grid.Column="1"
+                    Width="100"
+                    Margin="0,0,20,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Click="SaveSettings"
+                    Content="Speichern"
+                    IsEnabled="True"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}" />-->
+            </StackPanel>
+
+
+        </Grid>
+
+
+
+        <materialDesign:Card
+            Grid.Row="1"
+            Margin="0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="Transparent">
+
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel
+                    Margin="40,50,20,0"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+                    <StackPanel Margin="0,20,0,0" Orientation="Vertical">
+                        <TextBlock
+                            x:Name="UserID"
+                            FontSize="24"
+                            Foreground="Black"
+                            Text="0815" />
+                        <TextBlock
+                            FontSize="18"
+                            FontWeight="Light"
+                            Foreground="Black"
+                            Text="{DynamicResource accountSettings3}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,20,0,0" Orientation="Vertical">
+                        <TextBlock
+                            x:Name="vname"
+                            FontSize="24"
+                            Foreground="Black"
+                            Text="Max" />
+                        <TextBlock
+                            FontSize="18"
+                            FontWeight="Light"
+                            Foreground="Black"
+                            Text="{DynamicResource firstnameHint}" />
+                    </StackPanel>
+
+                    <StackPanel Margin="0,20,0,0" Orientation="Vertical">
+                        <TextBlock
+                            x:Name="Surname"
+                            FontSize="24"
+                            Foreground="Black"
+                            Text="Mustermann" />
+                        <TextBlock
+                            FontSize="18"
+                            FontWeight="Light"
+                            Foreground="Black"
+                            Text="{DynamicResource lastnameHint}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,20,0,0" Orientation="Vertical">
+                        <TextBlock
+                            x:Name="Username"
+                            FontSize="24"
+                            Foreground="Black"
+                            Text="Mustermann_M" />
+                        <TextBlock
+                            FontSize="18"
+                            FontWeight="Light"
+                            Foreground="Black"
+                            Text="{DynamicResource usernameHint}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,20,0,0" Orientation="Vertical">
+                        <TextBlock
+                            x:Name="mail"
+                            FontSize="24"
+                            Foreground="Black"
+                            Text="max.mustermann@mustermail.de" />
+                        <TextBlock
+                            FontSize="18"
+                            FontWeight="Light"
+                            Foreground="Black"
+                            Text="{DynamicResource emailHint}" />
+                    </StackPanel>
+                    <!--<Grid Margin="0,20,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Margin="0,0,0,10"
+                                    FontSize="18"
+                                    Text="{DynamicResource accountSettings10}" />
+
+                                <ComboBox
+                                    x:Name="languageCombobox"
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="2"
+                                    materialDesign:HintAssist.Hint="{DynamicResource accountSettings9}"
+                                    IsEnabled="{Binding Path=IsChecked, ElementName=FilledComboBoxEnabledCheckBox}"
+                                    Style="{StaticResource MaterialDesignFilledComboBox}" />
+                            </Grid>-->
+                </StackPanel>
+                <StackPanel
+                    Grid.Column="1"
+                    Margin="30"
+                    Orientation="Vertical">
+                    <materialDesign:PackIcon
+                        Width="200"
+                        Height="200"
+                        Margin="0,50,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="#B9B9B9"
+                        Kind="AccountCircle" />
+                    <PasswordBox
+                        x:Name="oldPW"
+                        Margin="0,10,0,10"
+                        materialDesign:HintAssist.Hint="{DynamicResource accountSettings4}"
+                        IsEnabled="{Binding ElementName=RevealPasswordFilledEnabled, Path=IsChecked}"
+                        Style="{StaticResource MaterialDesignFilledRevealPasswordBox}" />
+                    <PasswordBox
+                        x:Name="newPW"
+                        Margin="0,10,0,10"
+                        materialDesign:HintAssist.Hint="{DynamicResource accountSettings5}"
+                        IsEnabled="{Binding ElementName=RevealPasswordFilledEnabled, Path=IsChecked}"
+                        Style="{StaticResource MaterialDesignFilledRevealPasswordBox}" />
+                    <PasswordBox
+                        x:Name="newPW2"
+                        Margin="0,10,0,10"
+                        materialDesign:HintAssist.Hint="{DynamicResource accountSettings6}"
+                        IsEnabled="{Binding ElementName=RevealPasswordFilledEnabled, Path=IsChecked}"
+                        Style="{StaticResource MaterialDesignFilledRevealPasswordBox}" />
+                    <Button
+                        x:Name="SaveNewPassword"
+                        Grid.Column="1"
+                        Width="200"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Click="SaveNewPassword_Click"
+                        Content="{DynamicResource accountSettings7}"
+                        Style="{StaticResource MaterialDesignRaisedLightButton}" />
+                </StackPanel>
+            </Grid>
+
+        </materialDesign:Card>
+
+    </Grid>
+</Window>

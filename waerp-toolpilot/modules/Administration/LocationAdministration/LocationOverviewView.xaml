@@ -1,0 +1,534 @@
+﻿<UserControl
+    x:Class="waerp_toolpilot.application.Administration.LocationAdministration.LocationOverviewView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.application.Administration.LocationAdministration"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="700"
+    d:DesignWidth="1086.625"
+    Background="#EEEEEE"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    Foreground="black"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="QuantityCell" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,0,0,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="SingleColDataGrid" TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+        </Style>
+        <Style x:Key="GridCellPad" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="15,0,0,0" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="LeftGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </UserControl.Resources>
+    <Grid Style="{StaticResource GridBackgroundMainFrame}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="9*" />
+        </Grid.RowDefinitions>
+        <Grid
+            Grid.Row="0"
+            Margin="20,0,20,0"
+            VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                FontSize="16"
+                FontWeight="Light"
+                Text="{DynamicResource locationAdminOverviewText}"
+                TextAlignment="Left"
+                TextWrapping="Wrap" />
+
+            <Button
+                x:Name="ExportContainerBtn"
+                Grid.Column="1"
+                Width="170"
+                Margin="0,0,0,0"
+                HorizontalAlignment="Right"
+                Click="ExportContainerBtn_Click"
+                IsEnabled="True"
+                Style="{StaticResource NormalButton}"
+                ToolTip="Historieneintrag Rückgäng machen">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="0,0,10,0">
+                            Inventurtabelle
+                        </TextBlock>
+                        <materialDesign:PackIcon Kind="FileExportOutline" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <!--<StackPanel Grid.Column="1" Orientation="Vertical">
+                <Button
+                    Grid.Column="1"
+                    Width="170"
+                    HorizontalAlignment="Right"
+                    Click="OpenNewItemDialog_Click"
+                    Content="{DynamicResource addLocationButton}"
+                    Style="{StaticResource NormalButton}" />
+                <Button
+                    x:Name="ExportAsCSV"
+                    Width="240"
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Right"
+                    Click="ExportAsCSV_Click"
+                    Content="{DynamicResource exportLocationsButton}"
+                    Style="{StaticResource NormalButton}"
+                    ToolTip="Lagerort anlegen" />
+            </StackPanel>-->
+
+
+        </Grid>
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="8*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid
+                Grid.Column="0"
+                Margin="10"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Bottom">
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                    <Button
+                        x:Name="AddContainer"
+                        Click="AddContainer_Click"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="Schrank anlegen">
+                        <materialDesign:PackIcon Foreground="Black" Kind="Plus" />
+                    </Button>
+                    <Button
+                        x:Name="EditConatiner"
+                        Click="EditConatiner_Click"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="Ausgewählten Schrank bearbeiten">
+                        <materialDesign:PackIcon Foreground="Black" Kind="Pen" />
+                    </Button>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button
+                        x:Name="DeleteContainer"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                        Click="DeleteContainer_Click"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="Ausgewählten Schrank entfernen">
+                        <materialDesign:PackIcon Foreground="Red" Kind="DeleteOutline" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+            <Grid
+                Grid.Column="1"
+                Margin="10"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Bottom">
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                    <Button
+                        x:Name="AddDrawer"
+                        Click="AddDrawer_Click"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="Schublade anlegen">
+                        <materialDesign:PackIcon Foreground="Black" Kind="Plus" />
+                    </Button>
+                    <Button
+                        x:Name="EditDrawer"
+                        Click="EditDrawer_Click"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="Ausgewählten Schublade bearbeiten">
+                        <materialDesign:PackIcon Foreground="Black" Kind="Pen" />
+                    </Button>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button
+                        x:Name="DeleteDrawer"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                        Click="DeleteDrawer_Click"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="Ausgewählten Schublade entfernen">
+                        <materialDesign:PackIcon Foreground="Red" Kind="DeleteOutline" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+            <Grid
+                Grid.Column="2"
+                Margin="10"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Bottom">
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                    <Button
+                        x:Name="AddCompartment"
+                        Click="AddCompartment_Click"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="Lagerfach anlegen">
+                        <materialDesign:PackIcon Foreground="Black" Kind="Plus" />
+                    </Button>
+                    <Button
+                        x:Name="EditCompartment"
+                        Click="EditCompartment_Click"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="Ausgewählten Lagerfach bearbeiten">
+                        <materialDesign:PackIcon Foreground="Black" Kind="Pen" />
+                    </Button>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button
+                        x:Name="DeleteCompartment"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                        Click="DeleteCompartment_Click"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        ToolTip="Ausgewählten Lagerfach entfernen">
+                        <materialDesign:PackIcon Foreground="Red" Kind="DeleteOutline" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    x:Name="assignItemToCompartment"
+                    Grid.Column="0"
+                    Width="50"
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Right"
+                    Click="assignItemToCompartment_Click"
+                    IsEnabled="True"
+                    Style="{StaticResource NormalButton}"
+                    ToolTip="Werkzeug zum Fach zuweisen">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="link" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button
+                    x:Name="unassignItemFromCompartment"
+                    Grid.Column="0"
+                    Width="50"
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Right"
+                    Click="unassignItemFromCompartment_Click"
+                    IsEnabled="True"
+                    Style="{StaticResource NormalButton}"
+                    ToolTip="Werkzeug vom Fach entfernen"
+                    Visibility="Hidden">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="LinkOff" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button
+                    x:Name="correctLocationQuantity"
+                    Grid.Column="1"
+                    Width="200"
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Right"
+                    Click="correctLocationQuantity_Click"
+                    IsEnabled="True"
+                    Style="{StaticResource NormalButton}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="0,0,10,0">
+                                Bestand korrigieren
+                            </TextBlock>
+                            <materialDesign:PackIcon Kind="pen" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <DataGrid
+                x:Name="ContainerItems"
+                Grid.Row="1"
+                Margin="0,0,10,0"
+                ItemsSource="{Binding Path=ContainerItems}"
+                SelectionChanged="ContainerItems_SelectionChanged">
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="MinHeight" Value="50" />
+                        <Setter Property="MaxHeight" Value="50" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#00F4E6" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+
+                        </Style.Triggers>
+
+                    </Style>
+
+                </DataGrid.CellStyle>
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=container_name_long}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="{DynamicResource containerTableHeader1}"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=container_name_short}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="{DynamicResource containerTableHeader2}"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid
+                x:Name="DrawerItems"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="10,0,10,0"
+                ItemsSource="{Binding Path=DrawerItems}"
+                SelectionChanged="DrawerItems_SelectionChanged">
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="MinHeight" Value="50" />
+                        <Setter Property="MaxHeight" Value="50" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#00F4E6" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                        </Style.Triggers>
+
+                    </Style>
+
+                </DataGrid.CellStyle>
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=drawer_name}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="{DynamicResource drawerTableHeader}"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid
+                x:Name="CompartmentItems"
+                Grid.Row="1"
+                Grid.Column="2"
+                Margin="10,0,10,0"
+                ItemsSource="{Binding Path=CompartmentItems}"
+                SelectionChanged="CompartmentItems_SelectionChanged">
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="MinHeight" Value="50" />
+                        <Setter Property="MaxHeight" Value="50" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#00F4E6" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+
+                        </Style.Triggers>
+
+                    </Style>
+
+                </DataGrid.CellStyle>
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Path=compartment_name}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="{DynamicResource compartmentTableHeader}"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}"
+                        IsReadOnly="True" />
+
+                    <DataGridTemplateColumn
+                        Width="*"
+                        Header="{DynamicResource compartmentTableHeader2}"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <materialDesign:PackIcon
+                                    Width="30"
+                                    Height="30"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                                    <materialDesign:PackIcon.Style>
+                                        <Style TargetType="materialDesign:PackIcon">
+                                            <Setter Property="Kind" Value="Check" />
+                                            <Setter Property="Foreground" Value="#8BC34A" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding is_dynamic}" Value="0">
+                                                    <Setter Property="Kind" Value="Close" />
+                                                    <Setter Property="Foreground" Value="Red" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </materialDesign:PackIcon.Style>
+                                </materialDesign:PackIcon>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid
+                Grid.Row="2"
+                Grid.Column="3"
+                Margin="10,0,0,0"
+                VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Border    
+                    Grid.RowSpan="2"
+                    Background="#EEEEEE"
+                    CornerRadius="10" />
+
+                <StackPanel
+                    Grid.Row="0"
+                    Margin="20,10,20,0"
+                    Orientation="Vertical">
+                    <StackPanel Margin="0,0,0,20" Orientation="Vertical">
+                        <StackPanel Margin="0,0,0,0" Orientation="Vertical">
+                            <TextBlock
+                                x:Name="ItemIdent"
+                                FontSize="20"
+                                FontWeight="Light"
+                                Text="Test"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                FontSize="14"
+                                FontWeight="Medium"
+                                Text="{DynamicResource itemIdent}" />
+                        </StackPanel>
+                        <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                            <TextBlock
+                                x:Name="ItemDescription"
+                                FontSize="20"
+                                FontWeight="Light"
+                                Text="itemasdkjaskdk"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                FontSize="14"
+                                FontWeight="Medium"
+                                Text="{DynamicResource itemDescription1Hint}" />
+                        </StackPanel>
+                        <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                            <TextBlock
+                                x:Name="ItemDescription2"
+                                FontSize="20"
+                                FontWeight="Light"
+                                Text="itemasdkjaskdk"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                FontSize="14"
+                                FontWeight="Medium"
+                                Text="{DynamicResource itemDescription2Hint}" />
+                        </StackPanel>
+                        <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                            <TextBlock
+                                x:Name="ItemDiameter"
+                                FontSize="20"
+                                FontWeight="Light"
+                                Text="itemasdkjaskdk"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                FontSize="14"
+                                FontWeight="Medium"
+                                Text="Durchmesser in mm" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,0,20" Orientation="Vertical">
+                        <TextBlock
+                            x:Name="ItemTotalQuantity"
+                            FontSize="20"
+                            FontWeight="Light"
+                            Text="itemasdkjaskdk" />
+                        <TextBlock
+                            FontSize="14"
+                            FontWeight="Medium"
+                            Text="{DynamicResource itemQuantHint}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,0,0,20" Orientation="Vertical">
+                        <TextBlock
+                            x:Name="ItemQuality"
+                            FontSize="20"
+                            FontWeight="Light"
+                            Text="itemasdkjaskdk" />
+                        <TextBlock
+                            FontSize="14"
+                            FontWeight="Medium"
+                            Text="{DynamicResource itemQualityHint}" />
+                    </StackPanel>
+                    <Border    
+                        Width="250"
+                        Height="150"
+                        Padding="8"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="#9E9E9E"
+                        BorderBrush="#EEEEEE"
+                        BorderThickness="2"
+                        CornerRadius="5">
+                        <Image x:Name="ItemImage" />
+
+                    </Border>
+
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,105 @@
+﻿<Window
+    x:Class="waerp_toolpilot.application.Administration.UserAdministration.ConfirmDeleteWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.application.Administration.UserAdministration"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="ErrorWindow"
+    Width="600"
+    Height="300"
+    AllowsTransparency="True"
+    Background="Transparent"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Border      Background="#E6E6E6" CornerRadius="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+            <Border     
+                x:Name="ErrorWindowBorder"
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Height="10"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Background="#FF5252"
+                CornerRadius="10 10 0 0" />
+            <materialDesign:PackIcon
+                x:Name="ErrorWindowIcon"
+                Grid.Column="0"
+                Width="100"
+                Height="100"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="#FF5252"
+                Kind="AlertOutline" />
+
+            <Grid Grid.Column="0" Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    x:Name="MessageTitle"
+                    Grid.ColumnSpan="2"
+                    VerticalAlignment="Center"
+                    FontSize="35"
+                    FontWeight="SemiBold"
+                    Foreground="#FF5252"
+                    Text="{DynamicResource warningTitleWindow}"
+                    TextAlignment="Center" />
+                <TextBlock
+                    x:Name="ErrorWindowText"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="0,0,20,0"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Text="{DynamicResource deleteUserText}"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap" />
+
+                <StackPanel
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    Margin="20"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+                    <Button
+                        x:Name="CancleBtn"
+                        Width="100"
+                        Margin="0,0,20,0"
+                        HorizontalAlignment="Right"
+                        Click="CancleBtn_Click"
+                        Content="{DynamicResource cancleButton}"
+                        Style="{StaticResource CancleButton}" />
+                    <Button
+                        x:Name="DeleteItem"
+                        Width="200"
+                        HorizontalAlignment="Right"
+                        Background="#FF5252"
+                        BorderBrush="#FF5252"
+                        Click="DeleteUser_Click"
+                        Content="{DynamicResource deleteUserButton}"
+                        Foreground="White"
+                        Style="{StaticResource NormalButton}" />
+
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+
+    </Border>
+
+</Window>

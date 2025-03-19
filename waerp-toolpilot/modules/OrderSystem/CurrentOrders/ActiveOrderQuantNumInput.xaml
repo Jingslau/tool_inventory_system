@@ -1,0 +1,259 @@
+﻿<Window
+    x:Class="waerp_toolpilot.application.OrderSystem.CurrentOrders.ActiveOrderQuantNumInput"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.application.OrderSystem.CurrentOrders"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="RebookNumberInputWindow"
+    Width="500"
+    Height="600"
+    AllowsTransparency="True"
+    Background="Transparent"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Grid>
+        <Border     
+            Grid.Row="0"
+            BorderBrush="Gray"
+            BorderThickness="1"
+            CornerRadius="10">
+            <Rectangle
+                Margin="0"
+                Fill="#EEEEEE"
+                RadiusX="9"
+                RadiusY="9"
+                Stroke="Gray" />
+        </Border>
+        <Grid
+            Grid.Row="0"
+            Width="400"
+            Height="500"
+            Margin="50,50,50,50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="0.75*" />
+                <RowDefinition Height="0.75*" />
+                <RowDefinition Height="0.75*" />
+                <RowDefinition Height="0.75*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.75*" />
+                <ColumnDefinition Width="0.75*" />
+                <ColumnDefinition Width="0.75*" />
+                <ColumnDefinition Width="0.75*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                x:Name="NumberInput"
+                Grid.Row="0"
+                Grid.ColumnSpan="4"
+                Margin="0,0,20,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                FontSize="80"
+                FontWeight="Bold"
+                Text="132" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Height="80"
+                Margin="8,0,8,0"
+                Click="NumberSeven_Click"
+                
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+            >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="60">
+                    7
+                </TextBlock>
+            </Button>
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Height="80"
+                Margin="8,0,8,0"
+                Click="NumberEight_Click"
+                
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+            >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="60">
+                    8
+                </TextBlock>
+            </Button>
+            <Button
+                Grid.Row="1"
+                Grid.Column="2"
+                Height="80"
+                Margin="8,0,8,0"
+                Click="NumberNine_Click"
+                
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+            >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="60">
+                    9
+                </TextBlock>
+            </Button>
+            <Button
+                Grid.Row="2"
+                Grid.Column="0"
+                Height="80"
+                Margin="8,0,8,0"
+                Click="NumberFour_Click"
+                
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+            >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="60">
+                    4
+                </TextBlock>
+            </Button>
+            <Button
+                Grid.Row="2"
+                Grid.Column="1"
+                Height="80"
+                Margin="8,0,8,0"
+                Click="NumberFive_Click"
+                
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+            >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="60">
+                    5
+                </TextBlock>
+            </Button>
+            <Button
+                Grid.Row="2"
+                Grid.Column="2"
+                Height="80"
+                Margin="8,0,8,0"
+                Click="NumberSix_Click"
+                
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+            >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="60">
+                    6
+                </TextBlock>
+            </Button>
+            <Button
+                Grid.Row="3"
+                Grid.Column="0"
+                Height="80"
+                Margin="8,0,8,0"
+                Click="NumberOne_Click"
+                
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+            >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="60">
+                    1
+                </TextBlock>
+            </Button>
+            <Button
+                Grid.Row="3"
+                Grid.Column="1"
+                Height="80"
+                Margin="8,0,8,0"
+                Click="NumberTwo_Click"
+                
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+            >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="60">
+                    2
+                </TextBlock>
+            </Button>
+            <Button
+                Grid.Row="3"
+                Grid.Column="2"
+                Height="80"
+                Margin="8,0,8,0"
+                Click="NumberThree_Click"
+                
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+            >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="60">
+                    3
+                </TextBlock>
+            </Button>
+            <Button
+                Grid.Row="4"
+                Grid.ColumnSpan="3"
+                Height="80"
+                Margin="8,0,8,0"
+                HorizontalAlignment="Stretch"
+                Click="NumberZero_Click"
+                
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+            >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="60">
+                    0
+                </TextBlock>
+            </Button>
+            <Button
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.Column="3"
+                Height="175"
+                Margin="8,0,8,0"
+                Background="#A94C42"
+                BorderBrush="#A94C42"
+                Click="DeleteLastDigit_Click"
+                Foreground="White"
+                
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+            >
+                <materialDesign:PackIcon
+                    Width="50"
+                    Height="50"
+                    Kind="ArrowLeftThin" />
+            </Button>
+            <Button
+                Grid.Row="3"
+                Grid.RowSpan="2"
+                Grid.Column="3"
+                Height="175"
+                Margin="8,0,8,0"
+                Background="#42A95F"
+                BorderBrush="#42A95F"
+                Click="SaveNumberInput_Click"
+                Foreground="White"
+                
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+            >
+                <materialDesign:PackIcon
+                    Width="50"
+                    Height="50"
+                    Kind="Check" />
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
+

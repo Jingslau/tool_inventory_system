@@ -1,0 +1,1837 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2013D4F7-A191-4B63-86DB-7289B7117311}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>waerp_toolpilot</RootNamespace>
+    <AssemblyName>waerp_toolpilot</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>ftp://ftp.strato.de/waerp.toolpilot/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>https://waerp.software/download/waerp.toolpilot/</InstallUrl>
+    <SupportUrl>https://waerp.software/software/waerp.toolpilot/support/index.html</SupportUrl>
+    <ErrorReportUrl>https://waerp.software/software/waerp.toolpilot/error/index.html</ErrorReportUrl>
+    <TargetCulture>de</TargetCulture>
+    <ProductName>wærp.toolpilot</ProductName>
+    <PublisherName>wærp</PublisherName>
+    <SuiteName>systems for small industries</SuiteName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>index.html</WebPage>
+    <ApplicationRevision>23</ApplicationRevision>
+    <ApplicationVersion>0.9.1.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>waerp_toolpilot_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>1A53597912844716D86FD670AA628533C0230832</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.1.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=30.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.30.0.1\lib\net47\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.21.9.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.21.9\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.3.5.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.1.3.5\lib\net462\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.3.5.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.3.5\lib\net462\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.8.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Hash.xxHash.1.0.8\lib\net462\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=4.0.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.4.0.0\lib\net47\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=2.1.2.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.2.1.2\lib\net462\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.8.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.4.8.0\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.0.0\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build" />
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.1264.42, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1264.42\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.1264.42, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1264.42\lib\net45\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.1264.42, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1264.42\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.DocumentObjectModel-wpf, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-wpf.1.50.5147\lib\net30\MigraDoc.DocumentObjectModel-wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering-wpf, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-wpf.1.50.5147\lib\net30\MigraDoc.Rendering-wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.RtfRendering-wpf, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-wpf.1.50.5147\lib\net30\MigraDoc.RtfRendering-wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=4.0.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.4.0.0\lib\net47\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MySqlConnector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySqlConnector.2.2.5\lib\net471\MySqlConnector.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp-wpf, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-wpf.1.50.5147\lib\net30\PdfSharp-wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting-wpf, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-wpf.1.50.5147\lib\net30\PdfSharp.Charting-wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ShowMeTheXAML, Version=2.0.0.62, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShowMeTheXAML.2.0.0\lib\net472\ShowMeTheXAML.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.7.0.2\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.7.0.0\lib\net462\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.5.0.2\lib\net461\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Text.Encoding.CodePages, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.7.0.0\lib\net462\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="config\AccountSettingsView\AccountSettingsWindow.xaml.cs">
+      <DependentUpon>AccountSettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="config\DatabaseSettingsView\MainPasswordWindow.xaml.cs">
+      <DependentUpon>MainPasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="dbtools\dbSetup.cs" />
+    <Compile Include="Functions\PDFCreaterFunc.cs" />
+    <Compile Include="Installation\ConfirmDeleteDatabaseWindow.xaml.cs">
+      <DependentUpon>ConfirmDeleteDatabaseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Installation\InstallationStore.cs" />
+    <Compile Include="mainGUI\mainDashboard.xaml.cs" />
+    <Compile Include="mainGUI\OrderSystemAlertWindow.xaml.cs">
+      <DependentUpon>OrderSystemAlertWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="models\MeasuringEquipModel.cs" />
+    <Compile Include="models\NewItemInInputModel.cs" />
+    <Compile Include="models\OrderStore.cs" />
+    <Compile Include="models\ReportWrongLocationModel.cs" />
+    <Compile Include="models\test.cs" />
+    <Compile Include="modules\Administration\CustomerAdministration\AddNewCustomerWindow.xaml.cs">
+      <DependentUpon>AddNewCustomerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\CustomerAdministration\ConfirmDeleteWindow.xaml.cs">
+      <DependentUpon>ConfirmDeleteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\CustomerAdministration\CustomerAdministrationView.xaml.cs">
+      <DependentUpon>CustomerAdministrationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\CustomerAdministration\EditCustomerWindow.xaml.cs">
+      <DependentUpon>EditCustomerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\ItemAdministration\AddNewFilterWindow.xaml.cs">
+      <DependentUpon>AddNewFilterWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\ItemAdministration\ConfirmDeleteItemWindow.xaml.cs">
+      <DependentUpon>ConfirmDeleteItemWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\ItemAdministration\EditFilterWindow.xaml.cs">
+      <DependentUpon>EditFilterWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\ItemAdministration\EditSelectedItemWindow.xaml.cs">
+      <DependentUpon>EditSelectedItemWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\LocationAdministration\AddNewCompartmentWindow.xaml.cs">
+      <DependentUpon>AddNewCompartmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\LocationAdministration\AddNewContainerWindow.xaml.cs">
+      <DependentUpon>AddNewContainerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\LocationAdministration\AddNewDrawerWindow.xaml.cs">
+      <DependentUpon>AddNewDrawerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\LocationAdministration\AddNewLocationView.xaml.cs">
+      <DependentUpon>AddNewLocationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\LocationAdministration\ConfirmDeleteLocationWindow.xaml.cs">
+      <DependentUpon>ConfirmDeleteLocationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\LocationAdministration\DeleteSelectedItemWindow.xaml.cs">
+      <DependentUpon>DeleteSelectedItemWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\LocationAdministration\EditCompartmentWindow.xaml.cs">
+      <DependentUpon>EditCompartmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\LocationAdministration\EditContainerWindow.xaml.cs">
+      <DependentUpon>EditContainerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\LocationAdministration\EditDrawerWindow.xaml.cs">
+      <DependentUpon>EditDrawerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\LocationAdministration\EditLocationWindow.xaml.cs">
+      <DependentUpon>EditLocationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\LocationAdministration\LocationOverviewView.xaml.cs">
+      <DependentUpon>LocationOverviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\MeasureEquipAdministration\AddMeasureAuditorWindow.xaml.cs">
+      <DependentUpon>AddMeasureAuditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\MeasureEquipAdministration\AddMeasureEquipLocationWindow.xaml.cs">
+      <DependentUpon>AddMeasureEquipLocationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\MeasureEquipAdministration\AddNewMeasureEquipWindow.xaml.cs">
+      <DependentUpon>AddNewMeasureEquipWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\MeasureEquipAdministration\DeleteMeasureEquipLocationWindow.xaml.cs">
+      <DependentUpon>DeleteMeasureEquipLocationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\MeasureEquipAdministration\DeleteMeasureEquipWindow.xaml.cs">
+      <DependentUpon>DeleteMeasureEquipWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\MeasureEquipAdministration\EditMeasureEquipLocationWindow.xaml.cs">
+      <DependentUpon>EditMeasureEquipLocationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\MeasureEquipAdministration\EditMeasureEquipWindow.xaml.cs">
+      <DependentUpon>EditMeasureEquipWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\MeasureEquipAdministration\MeasureEquipAdminOverview.xaml.cs">
+      <DependentUpon>MeasureEquipAdminOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\MeasureEquipAdministration\MeasureEquipAuditorOverview.xaml.cs">
+      <DependentUpon>MeasureEquipAuditorOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\MeasuringEquip\AddCheckUp.xaml.cs">
+      <DependentUpon>AddCheckUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\MeasuringEquip\EditCheckUp.xaml.cs">
+      <DependentUpon>EditCheckUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\MeasuringEquip\MeasuringEquipHistoryWindow.xaml.cs">
+      <DependentUpon>MeasuringEquipHistoryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\TempLocationAdministration\AddTempLocationWindow.xaml.cs">
+      <DependentUpon>AddTempLocationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\TempLocationAdministration\ConfirmDeleteTempLocationWindow.xaml.cs">
+      <DependentUpon>ConfirmDeleteTempLocationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\TempLocationAdministration\EditTempLocationWindow.xaml.cs">
+      <DependentUpon>EditTempLocationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\TempLocationAdministration\TempLocatioOverviewView.xaml.cs">
+      <DependentUpon>TempLocatioOverviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\UserAdministration\AddNewUserWindow.xaml.cs">
+      <DependentUpon>AddNewUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\UserAdministration\ConfirmDeleteWindow.xaml.cs">
+      <DependentUpon>ConfirmDeleteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\UserAdministration\EditUserWindow.xaml.cs">
+      <DependentUpon>EditUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\UserAdministration\UserAdministrationView.xaml.cs">
+      <DependentUpon>UserAdministrationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\VendorAdministration\AddNewVendorWindow.xaml.cs">
+      <DependentUpon>AddNewVendorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\VendorAdministration\ConfirmDeleteWindow.xaml.cs">
+      <DependentUpon>ConfirmDeleteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\VendorAdministration\EditVendorWindow.xaml.cs">
+      <DependentUpon>EditVendorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\VendorAdministration\VendorAdministrationView.xaml.cs">
+      <DependentUpon>VendorAdministrationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\BookItem\BookItemSelectionView.xaml.cs">
+      <DependentUpon>BookItemSelectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\BookItem\SuccessBookWindow.xaml.cs">
+      <DependentUpon>SuccessBookWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Global\ContactCardWindow.xaml.cs">
+      <DependentUpon>ContactCardWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\History\HistoryView.xaml.cs">
+      <DependentUpon>HistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\ItemAdministration\AddNewItemView.xaml.cs">
+      <DependentUpon>AddNewItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\ItemAdministration\ItemOverviewView.xaml.cs">
+      <DependentUpon>ItemOverviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\ItemDetail\ItemDetailView.xaml.cs">
+      <DependentUpon>ItemDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Machine\MachineOverviewView.xaml.cs">
+      <DependentUpon>MachineOverviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\Administration\MeasuringEquip\AddNextCheckUp.xaml.cs">
+      <DependentUpon>AddNextCheckUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\OrderSystem\CurrentOrders\ActiveOrderQuantNumInput.xaml.cs">
+      <DependentUpon>ActiveOrderQuantNumInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\OrderSystem\CurrentOrders\BookOrderNumberInputWindow.xaml.cs">
+      <DependentUpon>BookOrderNumberInputWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\OrderSystem\CurrentOrders\BookSelectedOrderWindow.xaml.cs">
+      <DependentUpon>BookSelectedOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\OrderSystem\CurrentOrders\ConfirmDeleteOrderWindow.xaml.cs">
+      <DependentUpon>ConfirmDeleteOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\OrderSystem\CurrentOrders\CurrentOrdersView.xaml.cs">
+      <DependentUpon>CurrentOrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\OrderSystem\CurrentOrders\EditOrderQuantWindow.xaml.cs">
+      <DependentUpon>EditOrderQuantWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\OrderSystem\CurrentOrders\PDFCreatorOrders.cs" />
+    <Compile Include="modules\OrderSystem\ItemOverviewShop\ItemOverviewShopView.xaml.cs">
+      <DependentUpon>ItemOverviewShopView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\OrderSystem\ItemOverviewShop\CheckOutView.xaml.cs">
+      <DependentUpon>CheckOutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\OrderSystem\ItemOverviewShop\EditItemCartQuantWindow.xaml.cs">
+      <DependentUpon>EditItemCartQuantWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\OrderSystem\ItemOverviewShop\ItemOverviewQuantSelection.xaml.cs">
+      <DependentUpon>ItemOverviewQuantSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\OrderSystem\ItemOverviewShop\OrderNumberInputView.xaml.cs">
+      <DependentUpon>OrderNumberInputView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\OrderSystem\ManageOldOrders\OldOrdersOverviewView.xaml.cs">
+      <DependentUpon>OldOrdersOverviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\OrderSystem\StorageOverview\StorageOverviewView.xaml.cs">
+      <DependentUpon>StorageOverviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RebookSystem\RebookFloorGroup\ConfirmRebookFloorGroupWindow.xaml.cs">
+      <DependentUpon>ConfirmRebookFloorGroupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RebookSystem\RebookFloorGroup\RebookSelectedFloorGroupWindow.xaml.cs">
+      <DependentUpon>RebookSelectedFloorGroupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RebookSystem\RebookGroup\RebookGroupConfirmWindow.xaml.cs">
+      <DependentUpon>RebookGroupConfirmWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RebookSystem\RebookGroup\RebookGroupToZoneWindow.xaml.cs">
+      <DependentUpon>RebookGroupToZoneWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RebookSystem\RebookGroup\RebookSelectedGroupWindow.xaml.cs">
+      <DependentUpon>RebookSelectedGroupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RebookSystem\RebookItem\RebookItemSelectedWindow.xaml.cs">
+      <DependentUpon>RebookItemSelectedWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RebookSystem\RebookItem\RebookNumberInputWindow.xaml.cs">
+      <DependentUpon>RebookNumberInputWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RebookSystem\RebookItem\RebookSuccessWindow.xaml.cs">
+      <DependentUpon>RebookSuccessWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RebookSystem\RebookItem\RebookViewSelection.xaml.cs">
+      <DependentUpon>RebookViewSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RebookSystem\RebookGroup\RebookGroupView.xaml.cs">
+      <DependentUpon>RebookGroupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RentItem\BookItemNewWindow.xaml.cs">
+      <DependentUpon>BookItemNewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RentItem\RentNumberInputView.xaml.cs">
+      <DependentUpon>RentNumberInputView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RentItem\RentSelectedItemView.xaml.cs">
+      <DependentUpon>RentSelectedItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RentItem\SelectMachineView.xaml.cs">
+      <DependentUpon>SelectMachineView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RentItem\SelectMachineWindow.xaml.cs">
+      <DependentUpon>SelectMachineWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\RentItem\SuccessRentView.xaml.cs">
+      <DependentUpon>SuccessRentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\ReportLocation\ReportLocationView.xaml.cs">
+      <DependentUpon>ReportLocationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\returnItem\ConfirmDeleteReturn.xaml.cs">
+      <DependentUpon>ConfirmDeleteReturn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\returnItem\MachineSelectionRebookWindow.xaml.cs">
+      <DependentUpon>MachineSelectionRebookWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\returnItem\ReturnItemSelect.xaml.cs">
+      <DependentUpon>ReturnItemSelect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\returnItem\ReturnNumberInputView.xaml.cs">
+      <DependentUpon>ReturnNumberInputView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\returnItem\ReturnSelectionView.xaml.cs">
+      <DependentUpon>ReturnSelectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\returnItem\SuccessReturnView.xaml.cs">
+      <DependentUpon>SuccessReturnView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\ScanBarcodeWindow.xaml.cs">
+      <DependentUpon>ScanBarcodeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\SearchItem\ItemIdentInputWindow.xaml.cs">
+      <DependentUpon>ItemIdentInputWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\SearchItem\NewItemBookWindow.xaml.cs">
+      <DependentUpon>NewItemBookWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\SearchItem\SearchSelectionWindow.xaml.cs">
+      <DependentUpon>SearchSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\TempLocations\ConfirmDeleteFromGroupWindow.xaml.cs">
+      <DependentUpon>ConfirmDeleteFromGroupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\TempLocations\ConfirmDeleteGroupWindow.xaml.cs">
+      <DependentUpon>ConfirmDeleteGroupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modules\TempLocations\TempLocationsView.xaml.cs">
+      <DependentUpon>TempLocationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="config\DatabaseSettingsView\DatabaseSettingsView.xaml.cs">
+      <DependentUpon>DatabaseSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="config\IniFile.cs" />
+    <Compile Include="config\SettingsStore\LocalDevice.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>LocalDevice.settings</DependentUpon>
+    </Compile>
+    <Compile Include="config\SystemConfig.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SystemConfig.resx</DependentUpon>
+    </Compile>
+    <Compile Include="config\SettingsStore\CompanySettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>CompanySettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="config\SettingsStore\Database.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Database.settings</DependentUpon>
+    </Compile>
+    <Compile Include="config\SettingsStore\pdfDocument.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>pdfDocument.settings</DependentUpon>
+    </Compile>
+    <Compile Include="dbtools\SqlConn.cs" />
+    <Compile Include="config\UserSettingsView\UserSettingsWindow.xaml.cs">
+      <DependentUpon>UserSettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="dbtools\dbUpdate.cs" />
+    <Compile Include="dbtools\dbConnector.cs" />
+    <Compile Include="dbtools\HistoryLogger.cs" />
+    <Compile Include="errorHandling\BufferLoader_Error.xaml.cs">
+      <DependentUpon>BufferLoader_Error.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="errorHandling\ErrorLogger.cs" />
+    <Compile Include="errorHandling\ErrorReporter.cs" />
+    <Compile Include="errorHandling\LoadingHandler.cs" />
+    <Compile Include="errorHandling\ValidationRules.cs" />
+    <Compile Include="Installation\FirstTimeStartUpWindow.xaml.cs">
+      <DependentUpon>FirstTimeStartUpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="licenseValidation\LicenseActivationWindow.xaml.cs">
+      <DependentUpon>LicenseActivationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="licenseValidation\LicenseServerConnector.cs" />
+    <Compile Include="licenseValidation\SystemHardwareReader.cs" />
+    <Compile Include="loginWindows\LoginTouch\LoginTouchWindow.xaml.cs">
+      <DependentUpon>LoginTouchWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="mainGUI\DashboardTouchView.xaml.cs">
+      <DependentUpon>DashboardTouchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="mainGUI\NavButton.cs" />
+    <Compile Include="Functions\StringEncrypter.cs" />
+    <Compile Include="SQL\AdministrationQueries.cs" />
+    <Compile Include="SQL\BookItemQueries.cs" />
+    <Compile Include="SQL\CurrentOrdersQueries.cs" />
+    <Compile Include="SQL\ItemAdministrationQueries.cs" />
+    <Compile Include="SQL\OrderItemOverviewQueries.cs" />
+    <Compile Include="SQL\RebookGroupQueries.cs" />
+    <Compile Include="SQL\RentItemQueries.cs" />
+    <Compile Include="errorHandling\ErrorHandlerModel.cs" />
+    <Compile Include="errorHandling\ErrorWindow.xaml.cs">
+      <DependentUpon>ErrorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="loginWindows\Login\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="mainGUI\MainWindowViewModel.cs" />
+    <Compile Include="mainGUI\StartUpView.xaml.cs">
+      <DependentUpon>StartUpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Functions\Account.cs" />
+    <Compile Include="SQL\ReturnItemQueries.cs" />
+    <Compile Include="SQL\SettingsQueries.cs" />
+    <Compile Include="SQL\TempLocationsQueries.cs" />
+    <Compile Include="models\AccountStore.cs" />
+    <Compile Include="models\ActiveOrderModel.cs" />
+    <Compile Include="models\Administration\CurrentCustomerModel.cs" />
+    <Compile Include="models\Administration\CurrentItemAdministrationModel.cs" />
+    <Compile Include="models\Administration\CurrentLocationAdministrationModel.cs" />
+    <Compile Include="models\Administration\CurrentUserAdministrationModel.cs" />
+    <Compile Include="models\ContactCardModel.cs" />
+    <Compile Include="models\CurrentRebookModel.cs" />
+    <Compile Include="models\CurrentRentModel.cs" />
+    <Compile Include="models\CurrentReturnModel.cs" />
+    <Compile Include="models\NavigationStore.cs" />
+    <Compile Include="models\PrgrammParameter.cs" />
+    <Compile Include="models\RebookGroupModel.cs" />
+    <Compile Include="models\ShoppingCartModel.cs" />
+    <Compile Include="models\TempLocationsModel.cs" />
+    <Compile Include="modules\RentItem\RentItemView.xaml.cs">
+      <DependentUpon>RentItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\BufferLoaderModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\RentItemViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Page Include="config\AccountSettingsView\AccountSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="config\DatabaseSettingsView\MainPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Installation\ConfirmDeleteDatabaseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Language\da-DK.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\et-EE.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\id-ID.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\hu-HU.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\uk-UA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\ko-KR.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\sv-SE.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\cs-CZ.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\sk-SK.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\el-GR.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\sl-SI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\pl-PL.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\nb-NO.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\lv-LV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\fr-FR.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\nl-NL.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\ro-RO.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\ja-JP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\fi-FI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\lt-LT.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\pt-BR.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\zh-CN.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\bg-BG.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\en-US.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Language\it-IT.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\pt-PT.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\es-ES.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\tr-TR.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\ru-RU.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Language\de-DE.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="mainGUI\DashboardView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="mainGUI\OrderSystemAlertWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\CustomerAdministration\AddNewCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\CustomerAdministration\ConfirmDeleteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\CustomerAdministration\CustomerAdministrationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\CustomerAdministration\EditCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\ItemAdministration\AddNewFilterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\ItemAdministration\ConfirmDeleteItemWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\ItemAdministration\EditFilterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\ItemAdministration\EditSelectedItemWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\LocationAdministration\AddNewCompartmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\LocationAdministration\AddNewContainerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\LocationAdministration\AddNewDrawerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\LocationAdministration\AddNewLocationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\LocationAdministration\ConfirmDeleteLocationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\LocationAdministration\DeleteSelectedItemWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\LocationAdministration\EditCompartmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\LocationAdministration\EditContainerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\LocationAdministration\EditDrawerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\LocationAdministration\EditLocationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\LocationAdministration\LocationOverviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\MeasureEquipAdministration\AddMeasureAuditorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\MeasureEquipAdministration\AddMeasureEquipLocationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\MeasureEquipAdministration\AddNewMeasureEquipWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\MeasureEquipAdministration\DeleteMeasureEquipLocationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\MeasureEquipAdministration\DeleteMeasureEquipWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\MeasureEquipAdministration\EditMeasureEquipLocationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\MeasureEquipAdministration\EditMeasureEquipWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\MeasureEquipAdministration\MeasureEquipAdminOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\MeasureEquipAdministration\MeasureEquipAuditorOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\MeasuringEquip\AddCheckUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\MeasuringEquip\EditCheckUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\MeasuringEquip\MeasuringEquipHistoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\TempLocationAdministration\AddTempLocationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\TempLocationAdministration\ConfirmDeleteTempLocationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\TempLocationAdministration\EditTempLocationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\TempLocationAdministration\TempLocatioOverviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\UserAdministration\AddNewUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\UserAdministration\ConfirmDeleteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\UserAdministration\EditUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\UserAdministration\UserAdministrationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\VendorAdministration\AddNewVendorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\VendorAdministration\ConfirmDeleteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\VendorAdministration\EditVendorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\VendorAdministration\VendorAdministrationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\BookItem\BookItemSelectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\BookItem\SuccessBookWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Global\ContactCardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\History\HistoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\ItemAdministration\AddNewItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\ItemAdministration\ItemOverviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\ItemDetail\ItemDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Machine\MachineOverviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\Administration\MeasuringEquip\AddNextCheckUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\OrderSystem\CurrentOrders\ActiveOrderQuantNumInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\OrderSystem\CurrentOrders\BookOrderNumberInputWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\OrderSystem\CurrentOrders\BookSelectedOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\OrderSystem\CurrentOrders\ConfirmDeleteOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\OrderSystem\CurrentOrders\CurrentOrdersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\OrderSystem\CurrentOrders\EditOrderQuantWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\OrderSystem\ItemOverviewShop\ItemOverviewShopView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\OrderSystem\ItemOverviewShop\CheckOutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\OrderSystem\ItemOverviewShop\EditItemCartQuantWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\OrderSystem\ItemOverviewShop\ItemOverviewQuantSelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\OrderSystem\ItemOverviewShop\OrderNumberInputView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\OrderSystem\ManageOldOrders\OldOrdersOverviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\OrderSystem\StorageOverview\StorageOverviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RebookSystem\RebookFloorGroup\ConfirmRebookFloorGroupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RebookSystem\RebookFloorGroup\RebookSelectedFloorGroupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RebookSystem\RebookGroup\RebookGroupConfirmWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RebookSystem\RebookGroup\RebookGroupToZoneWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RebookSystem\RebookGroup\RebookSelectedGroupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RebookSystem\RebookItem\RebookItemSelectedWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RebookSystem\RebookItem\RebookNumberInputWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RebookSystem\RebookItem\RebookSuccessWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RebookSystem\RebookItem\RebookViewSelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RebookSystem\RebookGroup\RebookGroupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RentItem\BookItemNewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RentItem\RentNumberInputView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RentItem\RentSelectedItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RentItem\SelectMachineView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RentItem\SelectMachineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RentItem\SuccessRentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\ReportLocation\ReportLocationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\returnItem\ConfirmDeleteReturn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\returnItem\MachineSelectionRebookWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\returnItem\ReturnItemSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\returnItem\ReturnNumberInputView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\returnItem\ReturnSelectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\returnItem\SuccessReturnView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\ScanBarcodeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\SearchItem\ItemIdentInputWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\SearchItem\NewItemBookWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\SearchItem\SearchSelectionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\TempLocations\ConfirmDeleteFromGroupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\TempLocations\ConfirmDeleteGroupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\TempLocations\TempLocationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="config\DatabaseSettingsView\DatabaseSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="config\UserSettingsView\UserSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="errorHandling\BufferLoader_Error.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="errorHandling\ErrorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Installation\FirstTimeStartUpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="licenseValidation\LicenseActivationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="loginWindows\Login\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="loginWindows\LoginTouch\LoginTouchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="mainGUI\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="mainGUI\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="mainGUI\StartUpView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="mainGUI\DashboardTouchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modules\RentItem\RentItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="themes\lightMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="config\SystemConfig.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SystemConfig.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="assets\images\app\Druckdatei_wærp_Briefpapier-din5008-form-b.pdf" />
+    <None Include="assets\images\app\Druckdatei_wærp_Briefpapier.pdf" />
+    <None Include="assets\misc\toolpilotLanguages.csv" />
+    <None Include="config\SettingsStore\CompanySettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>CompanySettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="config\SettingsStore\Database.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Database.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="config\SettingsStore\pdfDocument.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>pdfDocument.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="config\SettingsStore\LocalDevice.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>LocalDevice.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="waerp-management_TemporaryKey.pfx" />
+    <Resource Include="assets\fonts\fre3of9x.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\fonts\free3of9.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\fonts\Cherry Bird Demo.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\fonts\code_128.ttf" />
+    <Resource Include="assets\fonts\Code-39-Logitogo.ttf" />
+    <None Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\abc.xls" />
+    <None Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\abc.xls.xlsx" />
+    <None Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Thumbs.db" />
+    <None Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\Statistik-Report-Mitarbeiter-Spalek.xls.xlsx" />
+    <None Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\Statistik-Report-Mitarbeiter.xls" />
+    <None Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\Thumbs.db" />
+    <None Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\Thumbs.db" />
+    <None Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Thumbs.db" />
+    <None Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\Thumbs.db" />
+    <None Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\Thumbs.db" />
+    <None Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\Thumbs.db" />
+    <None Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Thumbs.db" />
+    <None Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Thumbs.db" />
+    <None Include="assets\images\tools\Bilder Sonstige Lieferanten\Thumbs.db" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="modules\Administration\DatabaseAdministration\" />
+    <Folder Include="themes\light\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\102632.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\102786.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\472008.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\5.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Ceramtec\LDGX.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\DCSwiss_W460.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\FAS380VS.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\FAS380VS.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\FAS381VS.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\FAS384VS.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\FPS381CN.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\FPS381VS.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\FS380DL.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\GF6116.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\GWI.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\N310.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\N320.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\N320V.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\N360.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\N360V.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\N410.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\N420.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\N420V.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\N460.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\N460V.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\RTS320VS.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\RTS323VS.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\RTS362VS.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\RTS365VS.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\W360.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\W460.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\Z360V.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\Z362V.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\dcswiss\Z420V.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Default\default.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\DTS.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\ESPERA2001.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_1.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_10.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_1001.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_1002.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_1003.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_1004.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_1005.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_1006.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_1007.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\ESPERA_1008.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_1008.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_1009.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_1009.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\ESPERA_1010.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_1010.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_1011.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_1011.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\ESPERA_1012.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_1012.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_11.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_12.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_13.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_14.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_15.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_16.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_17.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_18.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_19.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_20.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_21.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_3.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_4.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_5.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_6.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_7.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_8.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\Espera_9.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Espera\ESPERA_PW.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Feike\Feike_SOGT.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Feike\GY2M0200D100N-BM.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Feike\GY2M0300F030N-GM.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Feike\GY2M0300F030R05-GM.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Feike\GY2M0300F150N-BM.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Feike\SOMX073505-UM.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Feike\SOMX094506-UM.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\GF6116.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\GWI.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\1008.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\1685.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\217.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\25320.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\25510.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\25750.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\25798.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\25835.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\27208.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3011.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3034.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3176.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3195.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3209.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3212.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3220.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3297.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3308.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3367.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3572.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3574.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3677.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3684.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3693.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3735.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3779.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\3800.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\393.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\4214.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\4225.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\4226.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\4270.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\4487.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\495.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5018.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5020.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5492.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5510.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5511.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5513.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5518.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5525.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5549.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5556.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5573.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5574.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5579.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5611.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5612.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5639.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5646.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5647.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5729.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\5729.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\582.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6024.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6026.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6069.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6405.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6412.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6478.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6479.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6512.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6585.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6702.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6711.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6727.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6735.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6736.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6761.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6771.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6772.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6788.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6793.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6809.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6857.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6859.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6859.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6861.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6865.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6965.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\6981.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\730.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\768.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\769.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\770.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\824.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\9000.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\921.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\gühring\Stecher-planfilterhalter.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\H1.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\H2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\H3.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\Atron_1.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\Atron_10.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\Atron_11.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\Atron_12.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\Atron_2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\Atron_3.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\Atron_4.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\Atron_5.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\Atron_6.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\Atron_7.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\Atron_8.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\Atron_9.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\PKDD30-N.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\PKDD30-N.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WBN200-H.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WBN300-H.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WBN450-GG.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WHC05-GG.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WHC111-P.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WHC111-VA.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WHC111-VA.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WHC136-P.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WHC19-P.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WHC19-P.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WHC19-VA.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WHT12-P.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WHT12-P.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WHW16-N.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WIDIA_1.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\hahn+kolb\WTC15-P.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\105-1.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\105-BO.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\105SMK7x.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\114_1.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\114_2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\114_3.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\114_4.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Gewindedrehen.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_105_1.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_105_2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_105_3.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_105_4.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_105_VPM.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_105_VPM_2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_110.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_110_3.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_114.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_224.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_229.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_306.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_306_2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_311.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_311_2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_328.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_613.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_628_1.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_628_2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_636.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_B105.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_B110.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_B116.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_DSTMA.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_HC105.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_M306.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_M311.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_M313.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_M323.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_M328.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_N105.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_R105_BO.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_R18P.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Horn_RS108.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Horn\Schaft_M332.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\IMG_20201008_092330.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\AA.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\B30.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\B45.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\BD_1.5.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\ceratizit\7883209.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\ceratizit\xcnt040104er.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\ceratizit\xcnt060204en.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\ceratizit\xcnt10t304en.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\CEMT.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\CEMT.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\CMT.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\CMT.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\CMTB.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\CMTS.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\CMTS.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\CPT_2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\CPT_3.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\CPT_4.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\CPT_UN.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\Gewindeplatte.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\Gewindeplatte.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\GewindeplatteTR.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\GewindeplatteTR.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\Isak_1.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\Isak_2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\SimtekD16.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\CPT\SimtekD16.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\D11.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\D14.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\D16_1.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\D16_1020.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\D16_2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\DZ.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Eroglu_1.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Eroglu_2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Halter_R.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\king.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\KOMET.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\ccet2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\CCGT06-H01.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\CCMT06-H01.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\CCMT06-PC9030.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\dcgt.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\dcgt.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\DCGT11-H01.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\DCMT07-PC9030.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\DCMT11- NC3030.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\DCMT11- PC9030.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\DCMT11-NC3030.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\DCMT11-PC9030.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\DCMT11-PC9030.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\msfd.JPG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\QCMT06-PC5300.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\SP-L.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\SP-R.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\SP.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\tpgt.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\tpgt.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Korloy\VCGT.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\LPGX.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\MNF.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\QD-NG.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\QD-NG_2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\rime\HM35.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\rime\HM37.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\rime\HM4.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\rime\HM40.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\rime\HM90.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\rime\HTQ13.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\rime\HTQ4.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\rime\S4.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\rime\S4.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Screenshot 2022-04-13 120045.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d08011000grgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d08051001mrgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d08184602yrgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d0908150209mrgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d11011000grgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d11015000grgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d11016000grgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d11020000grgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d1102000grgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d11030000grgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d11051002mrgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d11185502yrgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d11186702yrgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d14141000argn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d14141502argn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d14142002argn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d14142052argn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d16030000grgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d16081502mrgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\d16189702yrgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\Espera_1011.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\SimtekD16.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\SimtekD16.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\SIMTEK_P06.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\SIMTEK_P10.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\te3007000grht45.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\te3010000grht45.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\te3016000grgn39.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\te3020000nrgt45.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\simtek\te3020002nrgt45.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Simtek_V06.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\sonstige\HSS-Entgratwerkzeug.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\SPMT-PD.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\Umsatzplan - akt.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\widax.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\widax.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\WOEX.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\WOHL.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Isak\XOMT_PD.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\00pp-20-540-2-80.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\00pp-32-540-3-195.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\45-pp.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\45PP-050-525-6.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90ESF-14-M8-428-2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90ESF-16-M8-428-2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90ESF-25-M12-428-3.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90pp-040-49-3.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90PP-040-75-16-5.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90PP-050-75-6.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90PP-12-18-63-2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90PP-12-63-2-120.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90PP-14-24-428-2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90PP-14-24-63-3.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90PP-14-63-3-140.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90PP-20-30-63-4.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90pp-20-50-75-2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90PP-20-63-4-200.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90pp-25-10-4.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90PP-25-37-63-5.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90PP-25-38-49-2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90pp-25-38-75-4.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90PP-2schneider.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90pp-32-328.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90PP-32-46-63-7.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90PP-32-48-49-3.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\90PP-40-48-49-4.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\ESF-20-28-M10-63-5.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\ESF-40-42-M16-49-3.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\FS20W-M10-45.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\GDH.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\GDH.PNG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\GDH_2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\GDH_2.PNG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMA10-520.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMA10-525.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMA10-529.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMA11-540.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMA11-541.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMA11-640.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\jma20.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB05-61.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB13-279.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB13-79.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB17-275R04.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB17-75.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB17-75MG.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB17-75MS.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB17-76.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB18-249R10.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB18-49R10.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB18-49R16.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB18-49R20.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB18-49R32.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB19-429.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB21-63.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB28-428.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB31-723.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMB31-823.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMC07-210.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMC07-410.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMC07-510.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMC07-810.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JMC07-910.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JML01-282.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\JML01-82.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Jongen_90ESF.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Jongen_90PP.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Jongen_90PP.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Jongen_90PP_2.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Jongen_90PP_3.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Jongen_ESF.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Jongen_ESF.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Jongen_vhm209.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Jongen_vhm472.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Jongen_vhm478.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\M12-Einschraubstange.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\MNF.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\MNF.PNG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Platte-FP428.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Platte-FP49.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Platte-FP63.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Platte-FP723.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Platte-FP75.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\Schraube.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhb5505a.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm281w.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm284.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm302.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm308.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm309.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm381.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm382.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm389.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm441.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm449.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm461.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm472.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm472.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm477.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm481.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm643.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\vhm643.png" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\VHM_284.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Jongen\VHM_284.PNG" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Schrauben\S1.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\Screenshot 2022-02-21 104940.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\SON.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\SON1.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\zecha\532.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\zecha\533.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\zecha\534.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\zecha\555.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\zecha\557.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\zecha\582.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\zecha\583.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\zecha\584.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\zecha\585.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\zecha\635A_15xd.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\zecha\635A_3xd.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\zecha\635A_8xd.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\zecha\636.jpg" />
+    <Resource Include="assets\images\tools\Bilder Sonstige Lieferanten\zecha\700.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="waerp_toolpilot_icon.ico" />
+    <Resource Include="assets\images\logos\waerp-toolpilot-logo-black.png" />
+    <Resource Include="assets\images\logos\waerp_toolpilot_icon.ico" />
+    <Resource Include="assets\images\logos\logored_bg.png" />
+    <Content Include="assets\DEMO Data\toolpilot_16_08_2023_WORKSTATION_BAYER.sql" />
+    <Content Include="update\0\initStandardValues.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="update\0\initEmptyDB0.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="assets\images\logos\LogoMainBlack.png" />
+    <Resource Include="assets\images\logos\SplashLogoBg.png" />
+    <Resource Include="assets\images\logos\SplashScreenLogo.png" />
+    <Resource Include="assets\images\logos\SplashScreenLogoBlack.png" />
+    <Resource Include="assets\images\logos\Logo_Startup.png" />
+    <Resource Include="assets\images\logos\thumb-fw_logo-wærp-logo.png" />
+    <Resource Include="assets\images\logos\waerp-stockpilot-logo-black.png" />
+    <Resource Include="assets\images\logos\waerp-logo.png" />
+    <Resource Include="assets\images\app\Group 1.png" />
+    <Content Include="assets\images\app\test.svg" />
+    <Resource Include="assets\images\logos\waerp-stockpilot-icon.png" />
+    <Resource Include="assets\images\logos\waerp-stockpilot-icon.ico" />
+    <Resource Include="assets\images\logos\waerp-icon.png" />
+    <Resource Include="assets\images\app\LoginBackground2PNG.png" />
+    <Resource Include="assets\images\app\CheckIconPNG.png" />
+    <Resource Include="assets\images\app\NotIconPNG.png" />
+    <Resource Include="assets\images\app\LoginBackgroundPNG.png" />
+    <Resource Include="assets\images\app\Druckdatei_wærp_Briefpapier-din5008-form-b.jpg" />
+    <Content Include="assets\images\app\LoginBackgroundSVG.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets'))" />
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.1264.42\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.1264.42\build\Microsoft.Web.WebView2.targets'))" />
+  </Target>
+  <Import Project="..\packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets" Condition="Exists('..\packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets')" />
+  <Import Project="..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets')" />
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.1264.42\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.1264.42\build\Microsoft.Web.WebView2.targets')" />
+</Project>

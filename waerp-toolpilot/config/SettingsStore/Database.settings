@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="waerp_toolpilot.config.SettingsStore" GeneratedClassName="Database">
+  <Profiles />
+  <Settings>
+    <Setting Name="dbServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="dbSchema" Type="System.String" Scope="User">
+      <Value Profile="(Default)">impact_db</Value>
+    </Setting>
+    <Setting Name="dbUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root</Value>
+    </Setting>
+    <Setting Name="dbPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">050582496031dDp!</Value>
+    </Setting>
+    <Setting Name="dbProvider" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MySql.Data.MySqlClient</Value>
+    </Setting>
+    <Setting Name="dbTablesDefault" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">company_settings; currency; customer_objects; dbinfo; filter1_names; filter2_names; filter3_names; filter4_names; filter5_names; floor_group_item_relations; floor_group_objects; floor_objects; group_objects; history_log; item_filter_relations; item_location_relations; item_objects; item_rents; item_subitem_relations; item_vendor_relations; location_objects; log_action_names; machines; order_item_relations; order_objects; settings; syncdatatable; user_privilege_relations; user_privileges; user_roles; users; vendor_objects</Value>
+    </Setting>
+    <Setting Name="dbLicenseServer" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">eu-cdbr-west-03.cleardb.net</Value>
+    </Setting>
+    <Setting Name="dbLicenseSchema" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">heroku_33fdb95948185e6</Value>
+    </Setting>
+    <Setting Name="dbLicenseUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">b07661b6dfb466</Value>
+    </Setting>
+    <Setting Name="dbLicensePassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1d10f63a</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

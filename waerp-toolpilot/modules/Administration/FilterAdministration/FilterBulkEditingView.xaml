@@ -1,0 +1,558 @@
+﻿<UserControl
+    x:Class="waerp_toolpilot.modules.Administration.FilterAdministration.FilterBulkEditingView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:waerp_toolpilot.modules.Administration.FilterAdministration"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="700"
+    d:DesignWidth="1086.625"
+    Background="#EEEEEE"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    Foreground="black"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="QuantityCell" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,0,0,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="SingleColDataGrid" TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+        </Style>
+        <Style x:Key="GridCellPad" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="15,0,0,0" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="LeftGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="Margin" Value="15,0,0,0" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#444444" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </UserControl.Resources>
+    <Grid Margin="10,10,10,10" Style="{StaticResource GridBackgroundMainFrame}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <!--<RowDefinition Height="9*" />-->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="0,0,10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="8*" />
+            </Grid.RowDefinitions>
+            <StackPanel
+                Grid.Row="0"
+                VerticalAlignment="Bottom"
+                Orientation="Vertical">
+                <TextBlock>Filterstufe 1</TextBlock>
+                <Grid Margin="0,0,0,10">
+                    <StackPanel
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Orientation="Horizontal">
+                        <Button
+                            x:Name="AddFilter1"
+                            Width="30"
+                            Height="30"
+                            Click="AddFilter1_Click"
+                            IsEnabled="True"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="Filter anlegen">
+                            <materialDesign:PackIcon Foreground="Black" Kind="Plus" />
+                        </Button>
+                        <Button
+                            x:Name="SaveFilters1"
+                            Width="30"
+                            Height="30"
+                            Click="SaveFilters1_Click"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="Filterliste speichern">
+                            <materialDesign:PackIcon Foreground="Black" Kind="ContentSave" />
+                        </Button>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Button
+                            x:Name="DeleteFilter1"
+                            Width="30"
+                            Height="30"
+                            Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                            Click="DeleteFilter_Click"
+                            IsEnabled="False"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="Ausgewählten Filter entfernen">
+                            <materialDesign:PackIcon Foreground="Red" Kind="DeleteOutline" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <DataGrid
+                x:Name="filterItems_1"
+                Grid.Row="1"
+                SelectionChanged="filterItems_1_SelectionChanged">
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="MinHeight" Value="25" />
+                        <Setter Property="MaxHeight" Value="25" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#00F4E6" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+
+                        </Style.Triggers>
+
+                    </Style>
+
+                </DataGrid.CellStyle>
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding filter_id}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="ID"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+
+                    <DataGridTextColumn
+                        Width="3*"
+                        Binding="{Binding name}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="Name"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="0,0,10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="8*" />
+            </Grid.RowDefinitions>
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,0,10,0"
+                VerticalAlignment="Bottom"
+                Orientation="Vertical">
+                <TextBlock>Filterstufe 2</TextBlock>
+                <Grid Margin="0,0,0,10">
+                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Button
+                            x:Name="AddFilter2"
+                            Width="30"
+                            Height="30"
+                            Click="AddFilter2_Click"
+                            IsEnabled="True"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="Filter anlegen">
+                            <materialDesign:PackIcon Foreground="Black" Kind="Plus" />
+                        </Button>
+                        <Button
+                            x:Name="SaveFilters2"
+                            Width="30"
+                            Height="30"
+                            Click="SaveFilters2_Click"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="Filterliste speichern">
+                            <materialDesign:PackIcon
+                                Height="20"
+                                Foreground="Black"
+                                Kind="ContentSave" />
+                        </Button>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Button
+                            x:Name="DeleteFilter2"
+                            Width="30"
+                            Height="30"
+                            Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                            Click="DeleteFilter_Click"
+                            IsEnabled="False"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="Ausgewählten Filter entfernen">
+                            <materialDesign:PackIcon Foreground="Red" Kind="DeleteOutline" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <DataGrid
+                x:Name="filterItems_2"
+                Grid.Row="1"
+                SelectionChanged="filterItems_2_SelectionChanged">
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="MinHeight" Value="25" />
+                        <Setter Property="MaxHeight" Value="25" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#00F4E6" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+
+                        </Style.Triggers>
+
+                    </Style>
+
+                </DataGrid.CellStyle>
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding filter_id}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="ID"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+
+                    <DataGridTextColumn
+                        Width="3*"
+                        Binding="{Binding name}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="Name"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+        <Grid
+            Grid.Row="1"
+            Grid.Column="2"
+            Margin="0,0,10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="8*" />
+            </Grid.RowDefinitions>
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,0,10,0"
+                VerticalAlignment="Bottom"
+                Orientation="Vertical">
+                <TextBlock>Filterstufe 3</TextBlock>
+                <Grid Margin="0,0,0,10">
+                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Button
+                            x:Name="AddFilter3"
+                            Width="30"
+                            Height="30"
+                            Click="AddFilter3_Click"
+                            IsEnabled="True"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="Filter anlegen">
+                            <materialDesign:PackIcon Foreground="Black" Kind="Plus" />
+                        </Button>
+                        <Button
+                            x:Name="SaveFilters3"
+                            Width="30"
+                            Height="30"
+                            Click="SaveFilters3_Click"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="Filterliste speichern">
+                            <materialDesign:PackIcon
+                                Height="20"
+                                Foreground="Black"
+                                Kind="ContentSave" />
+                        </Button>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Button
+                            x:Name="DeleteFilter3"
+                            Width="30"
+                            Height="30"
+                            Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                            Click="DeleteFilter_Click"
+                            IsEnabled="False"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="Ausgewählten Filter entfernen">
+                            <materialDesign:PackIcon Foreground="Red" Kind="DeleteOutline" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <DataGrid
+                x:Name="filterItems_3"
+                Grid.Row="1"
+                SelectionChanged="filterItems_3_SelectionChanged">
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="MinHeight" Value="25" />
+                        <Setter Property="MaxHeight" Value="25" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#00F4E6" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+
+                        </Style.Triggers>
+
+                    </Style>
+
+                </DataGrid.CellStyle>
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding filter_id}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="ID"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+
+                    <DataGridTextColumn
+                        Width="3*"
+                        Binding="{Binding name}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="Name"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+        </Grid>
+        <Grid
+            Grid.Row="1"
+            Grid.Column="3"
+            Margin="0,0,10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="8*" />
+            </Grid.RowDefinitions>
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,0,10,0"
+                VerticalAlignment="Bottom"
+                Orientation="Vertical">
+                <TextBlock>Filterstufe 4</TextBlock>
+                <Grid Margin="0,0,0,10">
+                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Button
+                            x:Name="AddFilter4"
+                            Width="30"
+                            Height="30"
+                            Click="AddFilter4_Click"
+                            IsEnabled="True"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="Filter anlegen">
+                            <materialDesign:PackIcon Foreground="Black" Kind="Plus" />
+                        </Button>
+                        <Button
+                            x:Name="SaveFilters4"
+                            Width="30"
+                            Height="30"
+                            Click="SaveFilters4_Click"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="Filterliste speichern">
+                            <materialDesign:PackIcon
+                                Height="20"
+                                Foreground="Black"
+                                Kind="ContentSave" />
+                        </Button>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Button
+                            x:Name="DeleteFilter4"
+                            Width="30"
+                            Height="30"
+                            Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                            Click="DeleteFilter_Click"
+                            IsEnabled="False"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="Ausgewählten Filter entfernen">
+                            <materialDesign:PackIcon Foreground="Red" Kind="DeleteOutline" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <DataGrid
+                x:Name="filterItems_4"
+                Grid.Row="1"
+                SelectionChanged="filterItems_4_SelectionChanged">
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="MinHeight" Value="25" />
+                        <Setter Property="MaxHeight" Value="25" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#00F4E6" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+
+                        </Style.Triggers>
+
+                    </Style>
+
+                </DataGrid.CellStyle>
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding filter_id}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="ID"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+
+                    <DataGridTextColumn
+                        Width="3*"
+                        Binding="{Binding name}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="Name"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+        </Grid>
+        <Grid
+            Grid.Row="1"
+            Grid.Column="4"
+            Margin="0,0,10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="8*" />
+            </Grid.RowDefinitions>
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,0,10,0"
+                VerticalAlignment="Bottom"
+                Orientation="Vertical">
+                <TextBlock>Filterstufe 5</TextBlock>
+                <Grid Margin="0,0,0,10">
+                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Button
+                            x:Name="AddFilter5"
+                            Width="30"
+                            Height="30"
+                            Click="AddFilter5_Click"
+                            IsEnabled="True"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="Filter anlegen">
+                            <materialDesign:PackIcon Foreground="Black" Kind="Plus" />
+                        </Button>
+                        <Button
+                            x:Name="SaveFilters5"
+                            Width="30"
+                            Height="30"
+                            Click="SaveFilters5_Click"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="Filterliste speichern">
+                            <materialDesign:PackIcon
+                                Height="20"
+                                Foreground="Black"
+                                Kind="ContentSave" />
+                        </Button>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Button
+                            x:Name="DeleteFilter5"
+                            Width="30"
+                            Height="30"
+                            Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                            Click="DeleteFilter_Click"
+                            IsEnabled="False"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            ToolTip="Ausgewählten Filter entfernen">
+                            <materialDesign:PackIcon Foreground="Red" Kind="DeleteOutline" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <DataGrid
+                x:Name="filterItems_5"
+                Grid.Row="1"
+                SelectionChanged="filterItems_5_SelectionChanged">
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="MinHeight" Value="25" />
+                        <Setter Property="MaxHeight" Value="25" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#00F4E6" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+
+                        </Style.Triggers>
+
+                    </Style>
+
+                </DataGrid.CellStyle>
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding filter_id}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="ID"
+                        HeaderStyle="{StaticResource CenterGridHeaderStyle}"
+                        IsReadOnly="True" />
+
+                    <DataGridTextColumn
+                        Width="3*"
+                        Binding="{Binding name}"
+                        ElementStyle="{StaticResource GridCellPad}"
+                        Header="Name"
+                        HeaderStyle="{StaticResource LeftGridHeaderStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+        </Grid>
+    </Grid>
+</UserControl>
